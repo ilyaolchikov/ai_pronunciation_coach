@@ -1,0 +1,885 @@
+{
+  "version": 1,
+  "dataset_id": "mispeech/speechocean762",
+  "dataset_revision": "06385584fad212b26134c656fdd3ccf9f093f33e",
+  "split": "train",
+  "selection_seed": 762,
+  "unique_speakers": true,
+  "items": [
+    {
+      "utterance_id": "000010035",
+      "speaker": "0001",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "000050118",
+      "speaker": "0005",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "000060083",
+      "speaker": "0006",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 10
+    },
+    {
+      "utterance_id": "000260133",
+      "speaker": "0026",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 10
+    },
+    {
+      "utterance_id": "000360132",
+      "speaker": "0036",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "000480119",
+      "speaker": "0048",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "000530145",
+      "speaker": "0053",
+      "age_group": "child",
+      "accuracy_band": "low",
+      "accuracy": 4
+    },
+    {
+      "utterance_id": "000540018",
+      "speaker": "0054",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "000560038",
+      "speaker": "0056",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "000700010",
+      "speaker": "0070",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "000750080",
+      "speaker": "0075",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "001030054",
+      "speaker": "0103",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "001040069",
+      "speaker": "0104",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "001310096",
+      "speaker": "0131",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "001350318",
+      "speaker": "0135",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "001450170",
+      "speaker": "0145",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "004820370",
+      "speaker": "0482",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "005600365",
+      "speaker": "0560",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "005750089",
+      "speaker": "0575",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "005940267",
+      "speaker": "0594",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "007390355",
+      "speaker": "0739",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "008130340",
+      "speaker": "0813",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "009600133",
+      "speaker": "0960",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "010120212",
+      "speaker": "1012",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "010270356",
+      "speaker": "1027",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "010290361",
+      "speaker": "1029",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "010330268",
+      "speaker": "1033",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "010420175",
+      "speaker": "1042",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "010440008",
+      "speaker": "1044",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "010640284",
+      "speaker": "1064",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "010920105",
+      "speaker": "1092",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "011970141",
+      "speaker": "1197",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "012030044",
+      "speaker": "1203",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "012600263",
+      "speaker": "1260",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "013090051",
+      "speaker": "1309",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "013360082",
+      "speaker": "1336",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "013620210",
+      "speaker": "1362",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "013720189",
+      "speaker": "1372",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "014070040",
+      "speaker": "1407",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "014180008",
+      "speaker": "1418",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "014190081",
+      "speaker": "1419",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "014350157",
+      "speaker": "1435",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "014390076",
+      "speaker": "1439",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "014470026",
+      "speaker": "1447",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "020220200",
+      "speaker": "2022",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "020340113",
+      "speaker": "2034",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "020360302",
+      "speaker": "2036",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 10
+    },
+    {
+      "utterance_id": "020590265",
+      "speaker": "2059",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "020610341",
+      "speaker": "2061",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "020890134",
+      "speaker": "2089",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "021290160",
+      "speaker": "2129",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "021680169",
+      "speaker": "2168",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "021700362",
+      "speaker": "2170",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "021790108",
+      "speaker": "2179",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "022080192",
+      "speaker": "2208",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "022360227",
+      "speaker": "2236",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "022420146",
+      "speaker": "2242",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "022440180",
+      "speaker": "2244",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "022510230",
+      "speaker": "2251",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "022820134",
+      "speaker": "2282",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "023800280",
+      "speaker": "2380",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "024020175",
+      "speaker": "2402",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "024270168",
+      "speaker": "2427",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "024300061",
+      "speaker": "2430",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "024500363",
+      "speaker": "2450",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "026210157",
+      "speaker": "2621",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "027990066",
+      "speaker": "2799",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "029810135",
+      "speaker": "2981",
+      "age_group": "adult",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "030020112",
+      "speaker": "3002",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "030200076",
+      "speaker": "3020",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "030210042",
+      "speaker": "3021",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "030230209",
+      "speaker": "3023",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "030460142",
+      "speaker": "3046",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "030490095",
+      "speaker": "3049",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "030680162",
+      "speaker": "3068",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "030830001",
+      "speaker": "3083",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "030880049",
+      "speaker": "3088",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "032080132",
+      "speaker": "3208",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "034230115",
+      "speaker": "3423",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "036360061",
+      "speaker": "3636",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "038370081",
+      "speaker": "3837",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "040050358",
+      "speaker": "4005",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "051950154",
+      "speaker": "5195",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "052180084",
+      "speaker": "5218",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "054010165",
+      "speaker": "5401",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "054080151",
+      "speaker": "5408",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "054140127",
+      "speaker": "5414",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "054180063",
+      "speaker": "5418",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "054240152",
+      "speaker": "5424",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "055510122",
+      "speaker": "5551",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "060100037",
+      "speaker": "6010",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "060480169",
+      "speaker": "6048",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "061210068",
+      "speaker": "6121",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "064010109",
+      "speaker": "6401",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "065040137",
+      "speaker": "6504",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "069120123",
+      "speaker": "6912",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "070010009",
+      "speaker": "7001",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 5
+    },
+    {
+      "utterance_id": "075510144",
+      "speaker": "7551",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "080020014",
+      "speaker": "8002",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "080570144",
+      "speaker": "8057",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "085850161",
+      "speaker": "8585",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "090340088",
+      "speaker": "9034",
+      "age_group": "child",
+      "accuracy_band": "high",
+      "accuracy": 9
+    },
+    {
+      "utterance_id": "090700055",
+      "speaker": "9070",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "095560129",
+      "speaker": "9556",
+      "age_group": "child",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "096000009",
+      "speaker": "9600",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 5
+    },
+    {
+      "utterance_id": "096040009",
+      "speaker": "9604",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "096060004",
+      "speaker": "9606",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096070003",
+      "speaker": "9607",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "096090001",
+      "speaker": "9609",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096110003",
+      "speaker": "9611",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096130007",
+      "speaker": "9613",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 4
+    },
+    {
+      "utterance_id": "096140010",
+      "speaker": "9614",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "096150011",
+      "speaker": "9615",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "096160012",
+      "speaker": "9616",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "096190021",
+      "speaker": "9619",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 7
+    },
+    {
+      "utterance_id": "096240010",
+      "speaker": "9624",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096250011",
+      "speaker": "9625",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096280028",
+      "speaker": "9628",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 4
+    },
+    {
+      "utterance_id": "096300010",
+      "speaker": "9630",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 8
+    },
+    {
+      "utterance_id": "096340018",
+      "speaker": "9634",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096390001",
+      "speaker": "9639",
+      "age_group": "adult",
+      "accuracy_band": "mid",
+      "accuracy": 6
+    },
+    {
+      "utterance_id": "096430004",
+      "speaker": "9643",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096450004",
+      "speaker": "9645",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 5
+    },
+    {
+      "utterance_id": "096460011",
+      "speaker": "9646",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    },
+    {
+      "utterance_id": "096490003",
+      "speaker": "9649",
+      "age_group": "adult",
+      "accuracy_band": "low",
+      "accuracy": 3
+    }
+  ]
+}

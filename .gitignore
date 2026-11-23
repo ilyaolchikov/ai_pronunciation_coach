@@ -1,0 +1,15 @@
+.DS_Store
+.coverage
+.pytest_cache/
+.ruff_cache/
+.uv-cache/
+.venv/
+__pycache__/
+*.py[cod]
+build/
+dist/
+
+# Later-stage local artifacts
+.cache/
+benchmark-data/
+recordings/

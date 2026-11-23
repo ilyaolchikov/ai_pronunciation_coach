@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pronunciation-coach"
+version = "0.2.0"
+description = "A local-first, evidence-based English pronunciation coach"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.10,<3",
+]
+
+[project.scripts]
+pronunciation-coach = "pronunciation_coach.cli:main"
+pronunciation-coach-audio = "pronunciation_coach.audio_cli:main"
+pronunciation-coach-benchmark = "pronunciation_coach.benchmark_cli:main"
+pronunciation-coach-catalogue = "pronunciation_coach.catalogue_cli:main"
+pronunciation-coach-model = "pronunciation_coach.model_cli:main"
+
+[project.optional-dependencies]
+stage1 = [
+    "huggingface-hub>=0.36,<2",
+    "numpy>=2,<3",
+    "phonemizer>=3.3,<4",
+    "scipy>=1.14,<2",
+    "soundfile>=0.13,<1",
+    "torch>=2.6,<3",
+    "transformers>=4.48,<6",
+]
+benchmark = [
+    "datasets>=3.2,<5",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.400",
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.11",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pronunciation_coach"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers"
+markers = [
+    "stage1: tests that require optional Stage 1 dependencies",
+    "model: tests that require the pinned model cache",
+]
+testpaths = ["tests"]
+
+[tool.pyright]
+include = ["src", "tests"]
+pythonVersion = "3.11"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+
+[tool.ruff]
+extend-exclude = [".cache", ".uv-cache"]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+allowed-confusables = ["ɪ", "ː"]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]

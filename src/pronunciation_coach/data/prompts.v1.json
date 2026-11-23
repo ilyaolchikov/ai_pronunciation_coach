@@ -1,0 +1,39 @@
+[
+  {
+    "id": "thought-about-it",
+    "text": "I thought about it.",
+    "locale": "en-us",
+    "words": [
+      {"text": "I", "phone_variants": [["aɪ"]]},
+      {"text": "thought", "phone_variants": [["θ", "ɔː", "t"]]},
+      {"text": "about", "phone_variants": [["ɐ", "b", "aʊ", "t"]]},
+      {"text": "it", "phone_variants": [["ɪ", "t"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "she-sells-seashells",
+    "text": "She sells seashells.",
+    "locale": "en-us",
+    "words": [
+      {"text": "She", "phone_variants": [["ʃ", "iː"]]},
+      {"text": "sells", "phone_variants": [["s", "ɛ", "l", "z"]]},
+      {"text": "seashells", "phone_variants": [["s", "iː", "ʃ", "ɛ", "l", "z"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "three-free-throws",
+    "text": "Three free throws.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Three", "phone_variants": [["θ", "ɹ", "iː"]]},
+      {"text": "free", "phone_variants": [["f", "ɹ", "iː"]]},
+      {"text": "throws", "phone_variants": [["θ", "ɹ", "oʊ", "z"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  }
+]
