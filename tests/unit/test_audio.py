@@ -36,6 +36,15 @@ def test_reports_clipping_before_downmix() -> None:
     assert result.metadata.clipped_sample_ratio == 1.0
 
 
+def test_scales_integer_pcm_before_analysis() -> None:
+    samples = np.full(8_000, 16_384, dtype=np.int16)
+
+    result = normalize_audio(samples, 16_000)
+
+    assert np.allclose(result.samples, 0.5)
+    assert result.metadata.clipped_sample_ratio == 0.0
+
+
 @pytest.mark.parametrize(
     ("sample_count", "expected_code"),
     [

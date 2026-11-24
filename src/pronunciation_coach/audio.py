@@ -110,7 +110,7 @@ def normalize_audio(samples: NDArray[np.generic], sample_rate: int) -> Normalize
 
     frame_count, channel_count = array.shape
     _validate_stream_info(sample_rate, channel_count, frame_count)
-    float_samples = array.astype(np.float32, copy=False)
+    float_samples = to_float_audio(array)
     if not np.all(np.isfinite(float_samples)):
         raise CoachError(ErrorCode.AUDIO_INVALID, "Audio contains NaN or infinite samples")
 
@@ -129,6 +129,20 @@ def normalize_audio(samples: NDArray[np.generic], sample_rate: int) -> Normalize
             clipped_sample_ratio=clipped_ratio,
         ),
     )
+
+
+def to_float_audio(samples: NDArray[np.generic]) -> FloatAudio:
+    if np.issubdtype(samples.dtype, np.bool_):
+        raise CoachError(ErrorCode.AUDIO_INVALID, "Boolean audio samples are unsupported")
+    if np.issubdtype(samples.dtype, np.signedinteger):
+        info = np.iinfo(samples.dtype.name)
+        scale = float(max(abs(info.min), info.max))
+        return np.asarray(samples, dtype=np.float32) / scale
+    if np.issubdtype(samples.dtype, np.unsignedinteger):
+        info = np.iinfo(samples.dtype.name)
+        midpoint = float(info.max + 1) / 2
+        return (np.asarray(samples, dtype=np.float32) - midpoint) / midpoint
+    return np.asarray(samples, dtype=np.float32)
 
 
 def _validate_stream_info(sample_rate: int, channels: int, frames: int) -> None:

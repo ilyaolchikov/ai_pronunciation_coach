@@ -10,6 +10,11 @@ from typing import Any, Protocol, cast
 from pronunciation_coach.alignment import align_prompt
 from pronunciation_coach.audio import NormalizedAudio, detect_speech_region
 from pronunciation_coach.errors import CoachError, ErrorCode
+from pronunciation_coach.phone_policy import (
+    PhonePolicy,
+    load_phone_policy,
+    predict_phone_errors,
+)
 from pronunciation_coach.schemas import (
     AnalysisResult,
     ModelMetadata,
@@ -23,7 +28,7 @@ from pronunciation_coach.word_calibration import predict_word_errors, validate_w
 CALIBRATED_LIMITATIONS = (
     "A highlighted word is a calibrated model estimate, not proof of an error.",
     "No problem detected does not mean perfect pronunciation.",
-    "The current evidence localizes words, not a reliably incorrect individual sound.",
+    "Yellow phone warnings are supplemental L2-ARCTIC estimates and can reflect accent variation.",
 )
 
 
@@ -42,6 +47,9 @@ class PhoneScore(Protocol):
 
     @property
     def alternative_mean_log_probability(self) -> float: ...
+
+    @property
+    def alternative_phone(self) -> str: ...
 
     @property
     def log_posterior_margin(self) -> float: ...
@@ -134,14 +142,25 @@ def load_word_policy() -> WordPolicy:
 
 
 class CalibratedAnalyzer:
-    def __init__(self, recognizer: PosteriorRecognizer, policy: WordPolicy | None = None) -> None:
+    def __init__(
+        self,
+        recognizer: PosteriorRecognizer,
+        policy: WordPolicy | None = None,
+        phone_policy: PhonePolicy | None = None,
+    ) -> None:
         self.recognizer = recognizer
         self.policy = load_word_policy() if policy is None else policy
+        self.phone_policy = load_phone_policy() if policy is None else phone_policy
         if (
             recognizer.model_id != self.policy.model_id
             or recognizer.model_revision != self.policy.model_revision
         ):
             raise CoachError(ErrorCode.MODEL_UNAVAILABLE, "Model does not match the word policy")
+        if self.phone_policy is not None and (
+            recognizer.model_id != self.phone_policy.model_id
+            or recognizer.model_revision != self.phone_policy.model_revision
+        ):
+            raise CoachError(ErrorCode.MODEL_UNAVAILABLE, "Model does not match the phone policy")
 
     def analyze(self, prompt: Prompt, audio: NormalizedAudio) -> AnalysisResult:
         if audio.metadata.speech_region is None:
@@ -165,6 +184,7 @@ class CalibratedAnalyzer:
                 {
                     "word_index": word_indexes[score.target_index],
                     "phone": score.phone,
+                    "alternative_phone": score.alternative_phone,
                     "frame_count": score.frame_count,
                     "expected_mean_log_probability": score.expected_mean_log_probability,
                     "alternative_mean_log_probability": score.alternative_mean_log_probability,
@@ -176,6 +196,7 @@ class CalibratedAnalyzer:
             by_word = {int(item["word_index"]): item for item in predictions}
             if set(by_word) != set(range(len(prompt.words))):
                 raise ValueError("word classifier did not score every prompt word")
+            phone_probabilities = self._phone_probabilities(phone_scores, len(prompt.words))
         except (IndexError, RuntimeError, TypeError, ValueError) as error:
             raise CoachError(ErrorCode.ANALYSIS_FAILED, "Audio could not be analyzed") from error
 
@@ -186,10 +207,19 @@ class CalibratedAnalyzer:
                 status=(
                     WordStatus.REVIEW
                     if bool(by_word[index]["review"])
-                    else WordStatus.NO_PROBLEM_DETECTED
+                    else (
+                        WordStatus.WARNING
+                        if self.phone_policy is not None
+                        and phone_probabilities[index]
+                        >= self.phone_policy.warning_probability_threshold
+                        else WordStatus.NO_PROBLEM_DETECTED
+                    )
                 ),
                 evidence=(),
                 review_probability=float(by_word[index]["probability"]),
+                phone_error_probability=(
+                    phone_probabilities[index] if self.phone_policy is not None else None
+                ),
             )
             for index, word in enumerate(prompt.words)
         )
@@ -218,11 +248,39 @@ class CalibratedAnalyzer:
                 version=self.policy.version,
                 word_probability_threshold=self.policy.threshold,
                 calibration_report_sha256=self.policy.calibration_report_sha256,
+                phone_policy_id=(self.phone_policy.id if self.phone_policy is not None else None),
+                phone_policy_version=(
+                    self.phone_policy.version if self.phone_policy is not None else None
+                ),
+                phone_warning_probability_threshold=(
+                    self.phone_policy.warning_probability_threshold
+                    if self.phone_policy is not None
+                    else None
+                ),
+                phone_calibration_report_sha256=(
+                    self.phone_policy.calibration_report_sha256
+                    if self.phone_policy is not None
+                    else None
+                ),
             ),
             words=words,
             limitations=CALIBRATED_LIMITATIONS,
             warnings=warnings,
         )
+
+    def _phone_probabilities(
+        self, phone_scores: list[dict[str, Any]], word_count: int
+    ) -> tuple[float, ...]:
+        if self.phone_policy is None:
+            return (0.0,) * word_count
+        predictions = predict_phone_errors(phone_scores, self.phone_policy.candidate_model)
+        probabilities = [0.0] * word_count
+        for prediction in predictions:
+            word_index = int(prediction["word_index"])
+            probabilities[word_index] = max(
+                probabilities[word_index], float(prediction["probability"])
+            )
+        return tuple(probabilities)
 
 
 def _prompt_variants(

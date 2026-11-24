@@ -7,10 +7,10 @@ import numpy as np
 import pytest
 
 from pronunciation_coach.audio import normalize_audio
-from pronunciation_coach.audio_cli import _get_analyzer
 from pronunciation_coach.config import MODEL_REVISION
 from pronunciation_coach.prompts import get_prompt
 from pronunciation_coach.recognizers.wav2vec2_espeak import Wav2Vec2EspeakRecognizer
+from pronunciation_coach.runtime import get_analyzer
 
 pytestmark = [
     pytest.mark.stage1,
@@ -62,9 +62,9 @@ def test_cached_model_restricts_posterior_competitors() -> None:
 
 
 def test_cached_stage2_analyzer_runs_offline_and_is_reused() -> None:
-    _get_analyzer.cache_clear()
-    analyzer = _get_analyzer(Path(".cache/huggingface"), "cpu")
-    assert analyzer is _get_analyzer(Path(".cache/huggingface"), "cpu")
+    get_analyzer.cache_clear()
+    analyzer = get_analyzer(Path(".cache/huggingface"), "cpu")
+    assert analyzer is get_analyzer(Path(".cache/huggingface"), "cpu")
     time = np.arange(32_000, dtype=np.float32) / 16_000
     audio = normalize_audio(0.2 * np.sin(2 * np.pi * 220 * time), 16_000)
 

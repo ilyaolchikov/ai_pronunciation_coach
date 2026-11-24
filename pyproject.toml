@@ -18,6 +18,7 @@ pronunciation-coach-audio = "pronunciation_coach.audio_cli:main"
 pronunciation-coach-benchmark = "pronunciation_coach.benchmark_cli:main"
 pronunciation-coach-catalogue = "pronunciation_coach.catalogue_cli:main"
 pronunciation-coach-model = "pronunciation_coach.model_cli:main"
+pronunciation-coach-ui = "pronunciation_coach.ui:main"
 
 [project.optional-dependencies]
 stage1 = [
@@ -31,6 +32,9 @@ stage1 = [
 ]
 benchmark = [
     "datasets>=3.2,<5",
+]
+ui = [
+    "gradio>=6.32,<7",
 ]
 
 [dependency-groups]

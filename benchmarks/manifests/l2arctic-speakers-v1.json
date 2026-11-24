@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "dataset_id": "l2-arctic-v5.0",
+  "license": "CC-BY-NC-4.0",
+  "selection_seed": 762,
+  "selection_algorithm": "two-train-one-development-one-final-per-l1-v1",
+  "train_speakers": [
+    "ERMS",
+    "HKK",
+    "LXC",
+    "NJS",
+    "PNV",
+    "RRBI",
+    "SKA",
+    "SVBI",
+    "TLV",
+    "TXHC",
+    "YBAA",
+    "YDCK"
+  ],
+  "development_speakers": [
+    "ASI",
+    "BWC",
+    "HJK",
+    "HQTV",
+    "MBMPS",
+    "ZHAA"
+  ],
+  "final_test_speakers": [
+    "ABA",
+    "EBVS",
+    "NCC",
+    "THV",
+    "TNI",
+    "YKWK"
+  ]
+}

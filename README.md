@@ -1,8 +1,8 @@
 # AI Pronunciation Coach
 
-A local-first English read-aloud coach. Stage 2 now provides a minimum end-to-end engine:
-bounded audio loading, speech-region detection, pinned local inference, and calibrated
-word-level review probabilities. The deterministic Stage 0 kernel and all feasibility
+A local-first English read-aloud coach. Stage 3 adds a local browser UI over the Stage 2
+engine: microphone/upload input, calibrated red/yellow/green word states, limitations, and
+expandable technical evidence. The deterministic Stage 0 kernel and all feasibility
 experiments remain available as reproducible foundations.
 
 Stage 0 provides the deterministic kernel. Stage 1 adds bounded audio processing, a
@@ -33,6 +33,12 @@ high-rated false reviews. This unblocks bounded Stage 2 implementation; it does 
 the system learner-ready. The 63-speaker final-test partition remains unused. See
 [the Stage 1C report](docs/stage1c-word-calibration.md).
 
+An L2-ARCTIC phone calibration now supplements that classifier. On six untouched L2
+speakers it improved red-candidate precision and recall, but a SpeechOcean regression
+showed that it should not replace the general red policy. It is therefore deployed only
+as a yellow phone-sensitive warning at probability `0.42`. See
+[the L2-ARCTIC calibration report](docs/l2arctic-phone-calibration.md).
+
 ## Requirements
 
 - Python 3.11 or newer
@@ -54,6 +60,25 @@ uv run pronunciation-coach-model prefetch
 uv run pronunciation-coach-model prefetch --model xlsr53
 uv run pronunciation-coach-catalogue validate
 ```
+
+## Run the local browser UI
+
+Install the acoustic engine and UI, then prefetch the pinned model once while online:
+
+```bash
+uv sync --all-groups --extra stage1 --extra ui
+uv run pronunciation-coach-model prefetch
+uv run pronunciation-coach-ui
+```
+
+Open `http://127.0.0.1:7860`, use Previous/Next to choose among 15 sentences, and record
+or upload 0.25–15 seconds of audio. Navigating clears the previous recording and results.
+The app binds only to localhost and Gradio public sharing is disabled. Browser
+audio is saved as a WAV under the Git-ignored `recordings/ui/` directory before analysis.
+Uploads are saved there too because the NumPy input does not distinguish their source.
+The first analysis can be slower while the cached model loads. See
+[the Stage 3 UI guide](docs/stage3-ui.md) for result meanings, troubleshooting, and the
+manual acceptance checklist.
 
 ## Try the deterministic CLI
 
@@ -85,8 +110,9 @@ uv run pronunciation-coach-audio \
   --audio recording.wav
 ```
 
-The result marks words as `review` or `no_problem_detected`. A review is calibrated
-evidence, not proof of an error; no problem detected does not mean perfect pronunciation.
+The result marks words as `review`, `warning`, or `no_problem_detected`. A review or warning
+is calibrated evidence, not proof of an error; no problem detected does not mean perfect
+pronunciation.
 The JSON includes speech timing, model revision, policy version, calibration provenance,
 and limitations. See [the Stage 2 engine documentation](docs/stage2-analysis.md).
 
@@ -121,3 +147,15 @@ Reproduce the Stage 1C development calibration and its fixed held-out evaluation
 HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark calibrate-word-errors
 HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark run-calibrated-heldout --device cpu
 ```
+
+Run the small development-only intentional substitution benchmark after recording its six
+local audio files:
+
+```bash
+HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark run-intentional-errors \
+  --device cpu
+```
+
+It reports target-word localization, exact localization, wrong-word-only warnings, and
+correct-control false warnings. See
+[the intentional-error benchmark guide](docs/intentional-error-benchmark.md).

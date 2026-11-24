@@ -4,15 +4,27 @@ from pronunciation_coach.errors import CoachError, ErrorCode
 from pronunciation_coach.prompts import get_prompt, load_prompts
 
 
-def test_loads_three_versioned_prompts() -> None:
+def test_loads_fifteen_versioned_prompts() -> None:
     prompts = load_prompts()
 
-    assert len(prompts) == 3
+    assert len(prompts) == 15
     assert {prompt.catalogue_version for prompt in prompts} == {1}
     assert {prompt.id for prompt in prompts} == {
         "thought-about-it",
         "she-sells-seashells",
         "three-free-throws",
+        "think-about-it",
+        "turn-right-here",
+        "the-weather-is-warm-today",
+        "please-open-the-blue-door",
+        "fresh-fish-swim-fast",
+        "the-red-light-is-bright",
+        "she-chose-cheap-chairs",
+        "very-brave-people-vote",
+        "peter-packed-paper-bags",
+        "good-kids-can-cook",
+        "jane-enjoys-orange-juice",
+        "those-three-brothers-think",
     }
 
 

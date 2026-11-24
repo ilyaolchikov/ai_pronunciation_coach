@@ -21,6 +21,7 @@ class WordStatus(StrEnum):
     MATCH = "match"
     NO_PROBLEM_DETECTED = "no_problem_detected"
     REVIEW = "review"
+    WARNING = "warning"
     NOT_DETECTED = "not_detected"
     UNASSESSABLE = "unassessable"
 
@@ -139,6 +140,10 @@ class PolicyMetadata(ContractModel):
     version: int = Field(ge=1)
     word_probability_threshold: float = Field(gt=0.0, lt=1.0)
     calibration_report_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    phone_policy_id: str | None = None
+    phone_policy_version: int | None = Field(default=None, ge=1)
+    phone_warning_probability_threshold: float | None = Field(default=None, gt=0.0, lt=1.0)
+    phone_calibration_report_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
 
 
 class WordResult(ContractModel):
@@ -147,10 +152,11 @@ class WordResult(ContractModel):
     evidence: tuple[PhoneEvidence, ...]
     tips: tuple[str, ...] = ()
     review_probability: float | None = Field(default=None, ge=0.0, le=1.0)
+    phone_error_probability: float | None = Field(default=None, ge=0.0, le=1.0)
 
 
 class AnalysisResult(ContractModel):
-    schema_version: str = "1.2"
+    schema_version: str = "1.3"
     prompt_id: str
     prompt_catalogue_version: int = Field(ge=1)
     expected_text: str

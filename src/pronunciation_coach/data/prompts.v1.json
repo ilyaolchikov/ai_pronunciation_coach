@@ -35,5 +35,162 @@
     ],
     "catalogue_version": 1,
     "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "think-about-it",
+    "text": "Think about it.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Think", "phone_variants": [["θ", "ɪ", "ŋ", "k"]]},
+      {"text": "about", "phone_variants": [["ɐ", "b", "aʊ", "t"]]},
+      {"text": "it", "phone_variants": [["ɪ", "t"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "turn-right-here",
+    "text": "Turn right here.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Turn", "phone_variants": [["t", "ɜː", "n"]]},
+      {"text": "right", "phone_variants": [["ɹ", "aɪ", "t"]]},
+      {"text": "here", "phone_variants": [["h", "ɪɹ"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "the-weather-is-warm-today",
+    "text": "The weather is warm today.",
+    "locale": "en-us",
+    "words": [
+      {"text": "The", "phone_variants": [["ð", "ə"]]},
+      {"text": "weather", "phone_variants": [["w", "ɛ", "ð", "ɚ"]]},
+      {"text": "is", "phone_variants": [["ɪ", "z"]]},
+      {"text": "warm", "phone_variants": [["w", "ɔːɹ", "m"]]},
+      {"text": "today", "phone_variants": [["t", "ə", "d", "eɪ"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "please-open-the-blue-door",
+    "text": "Please open the blue door.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Please", "phone_variants": [["p", "l", "iː", "z"]]},
+      {"text": "open", "phone_variants": [["oʊ", "p", "ə", "n"]]},
+      {"text": "the", "phone_variants": [["ð", "ə"]]},
+      {"text": "blue", "phone_variants": [["b", "l", "uː"]]},
+      {"text": "door", "phone_variants": [["d", "ɔːɹ"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "fresh-fish-swim-fast",
+    "text": "Fresh fish swim fast.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Fresh", "phone_variants": [["f", "ɹ", "ɛ", "ʃ"]]},
+      {"text": "fish", "phone_variants": [["f", "ɪ", "ʃ"]]},
+      {"text": "swim", "phone_variants": [["s", "w", "ɪ", "m"]]},
+      {"text": "fast", "phone_variants": [["f", "æ", "s", "t"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "the-red-light-is-bright",
+    "text": "The red light is bright.",
+    "locale": "en-us",
+    "words": [
+      {"text": "The", "phone_variants": [["ð", "ə"]]},
+      {"text": "red", "phone_variants": [["ɹ", "ɛ", "d"]]},
+      {"text": "light", "phone_variants": [["l", "aɪ", "t"]]},
+      {"text": "is", "phone_variants": [["ɪ", "z"]]},
+      {"text": "bright", "phone_variants": [["b", "ɹ", "aɪ", "t"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "she-chose-cheap-chairs",
+    "text": "She chose cheap chairs.",
+    "locale": "en-us",
+    "words": [
+      {"text": "She", "phone_variants": [["ʃ", "iː"]]},
+      {"text": "chose", "phone_variants": [["tʃ", "oʊ", "z"]]},
+      {"text": "cheap", "phone_variants": [["tʃ", "iː", "p"]]},
+      {"text": "chairs", "phone_variants": [["tʃ", "ɛɹ", "z"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "very-brave-people-vote",
+    "text": "Very brave people vote.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Very", "phone_variants": [["v", "ɛ", "ɹ", "i"]]},
+      {"text": "brave", "phone_variants": [["b", "ɹ", "eɪ", "v"]]},
+      {"text": "people", "phone_variants": [["p", "iː", "p", "əl"]]},
+      {"text": "vote", "phone_variants": [["v", "oʊ", "t"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "peter-packed-paper-bags",
+    "text": "Peter packed paper bags.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Peter", "phone_variants": [["p", "iː", "ɾ", "ɚ"]]},
+      {"text": "packed", "phone_variants": [["p", "æ", "k", "t"]]},
+      {"text": "paper", "phone_variants": [["p", "eɪ", "p", "ɚ"]]},
+      {"text": "bags", "phone_variants": [["b", "æ", "ɡ", "z"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "good-kids-can-cook",
+    "text": "Good kids can cook.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Good", "phone_variants": [["ɡ", "ʊ", "d"]]},
+      {"text": "kids", "phone_variants": [["k", "ɪ", "d", "z"]]},
+      {"text": "can", "phone_variants": [["k", "æ", "n"]]},
+      {"text": "cook", "phone_variants": [["k", "ʊ", "k"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "jane-enjoys-orange-juice",
+    "text": "Jane enjoys orange juice.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Jane", "phone_variants": [["dʒ", "eɪ", "n"]]},
+      {"text": "enjoys", "phone_variants": [["ɛ", "n", "dʒ", "ɔɪ", "z"]]},
+      {"text": "orange", "phone_variants": [["ɔ", "ɹ", "ɪ", "n", "dʒ"]]},
+      {"text": "juice", "phone_variants": [["dʒ", "uː", "s"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+  },
+  {
+    "id": "those-three-brothers-think",
+    "text": "Those three brothers think.",
+    "locale": "en-us",
+    "words": [
+      {"text": "Those", "phone_variants": [["ð", "oʊ", "z"]]},
+      {"text": "three", "phone_variants": [["θ", "ɹ", "iː"]]},
+      {"text": "brothers", "phone_variants": [["b", "ɹ", "ʌ", "ð", "ɚ", "z"]]},
+      {"text": "think", "phone_variants": [["θ", "ɪ", "ŋ", "k"]]}
+    ],
+    "catalogue_version": 1,
+    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
   }
 ]

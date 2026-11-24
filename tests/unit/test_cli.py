@@ -23,7 +23,7 @@ def test_cli_emits_result_json(capsys: CaptureFixture[str]) -> None:
     output = parsed_output(capsys)
 
     assert exit_code == 0
-    assert output["schema_version"] == "1.2"
+    assert output["schema_version"] == "1.3"
     assert output["words"][1]["status"] == "review"
     assert output["words"][1]["tips"] == ["theta-vs-s"]
 

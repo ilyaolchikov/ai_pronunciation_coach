@@ -4,22 +4,14 @@ import argparse
 import json
 import sys
 from collections.abc import Sequence
-from functools import lru_cache
 from pathlib import Path
 
 from pronunciation_coach.audio import detect_speech_region, load_audio
-from pronunciation_coach.calibrated_analysis import CalibratedAnalyzer
 from pronunciation_coach.config import DEFAULT_MODEL_CACHE
 from pronunciation_coach.errors import CoachError
 from pronunciation_coach.prompts import get_prompt
 from pronunciation_coach.recognizers.wav2vec2_espeak import Wav2Vec2EspeakRecognizer
-
-
-@lru_cache(maxsize=1)
-def _get_analyzer(cache_dir: Path, device: str) -> CalibratedAnalyzer:
-    return CalibratedAnalyzer(
-        Wav2Vec2EspeakRecognizer(cache_dir=cache_dir, device=device, local_files_only=True)
-    )
+from pronunciation_coach.runtime import get_analyzer
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -93,7 +85,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             }
             print(json.dumps(payload, ensure_ascii=False, indent=2))
             return 0
-        result = _get_analyzer(arguments.cache_dir, arguments.device).analyze(prompt, audio)
+        result = get_analyzer(arguments.cache_dir, arguments.device).analyze(prompt, audio)
     except CoachError as error:
         payload = {"error": {"code": error.code.value, "message": str(error)}}
         print(json.dumps(payload, ensure_ascii=False), file=sys.stderr)

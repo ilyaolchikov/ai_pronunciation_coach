@@ -1,0 +1,141 @@
+{
+  "report_version": 1,
+  "experiment": "l2-arctic-phone-error-final-v1",
+  "decision": "improves_precision_and_recall",
+  "threshold_selection_performed": false,
+  "metrics": {
+    "candidate": {
+      "phone_metrics": {
+        "examples": 29567,
+        "positive_examples": 4560,
+        "flagged": 408,
+        "true_positives": 307,
+        "false_positives": 101,
+        "false_negatives": 4253,
+        "precision": 0.7524509803921569,
+        "recall": 0.06732456140350877,
+        "threshold": 0.5
+      },
+      "word_metrics": {
+        "examples": 8443,
+        "positive_examples": 3450,
+        "flagged": 370,
+        "true_positives": 314,
+        "false_positives": 56,
+        "false_negatives": 3136,
+        "precision": 0.8486486486486486,
+        "recall": 0.0910144927536232,
+        "threshold": 0.5
+      },
+      "diagnosis": {
+        "eligible_flagged_substitutions": 184,
+        "exact_alternative_matches": 118,
+        "exact_alternative_accuracy": 0.6413043478260869,
+        "selected_contrasts": {
+          "θ->f": {
+            "total": 2,
+            "flagged": 0,
+            "alternative_matched": 0
+          },
+          "θ->s": {
+            "total": 21,
+            "flagged": 2,
+            "alternative_matched": 2
+          },
+          "ɹ->l": {
+            "total": 12,
+            "flagged": 1,
+            "alternative_matched": 1
+          },
+          "l->ɹ": {
+            "total": 7,
+            "flagged": 0,
+            "alternative_matched": 0
+          }
+        }
+      },
+      "by_first_language": {
+        "Arabic": {
+          "examples": 4899,
+          "positive_examples": 431,
+          "flagged": 44,
+          "true_positives": 23,
+          "false_positives": 21,
+          "false_negatives": 408,
+          "precision": 0.5227272727272727,
+          "recall": 0.05336426914153132,
+          "threshold": 0.5
+        },
+        "Hindi": {
+          "examples": 4804,
+          "positive_examples": 551,
+          "flagged": 30,
+          "true_positives": 16,
+          "false_positives": 14,
+          "false_negatives": 535,
+          "precision": 0.5333333333333333,
+          "recall": 0.029038112522686024,
+          "threshold": 0.5
+        },
+        "Korean": {
+          "examples": 4878,
+          "positive_examples": 585,
+          "flagged": 31,
+          "true_positives": 18,
+          "false_positives": 13,
+          "false_negatives": 567,
+          "precision": 0.5806451612903226,
+          "recall": 0.03076923076923077,
+          "threshold": 0.5
+        },
+        "Mandarin": {
+          "examples": 4947,
+          "positive_examples": 591,
+          "flagged": 40,
+          "true_positives": 24,
+          "false_positives": 16,
+          "false_negatives": 567,
+          "precision": 0.6,
+          "recall": 0.04060913705583756,
+          "threshold": 0.5
+        },
+        "Spanish": {
+          "examples": 5009,
+          "positive_examples": 1070,
+          "flagged": 100,
+          "true_positives": 74,
+          "false_positives": 26,
+          "false_negatives": 996,
+          "precision": 0.74,
+          "recall": 0.0691588785046729,
+          "threshold": 0.5
+        },
+        "Vietnamese": {
+          "examples": 5030,
+          "positive_examples": 1332,
+          "flagged": 163,
+          "true_positives": 152,
+          "false_positives": 11,
+          "false_negatives": 1180,
+          "precision": 0.9325153374233128,
+          "recall": 0.11411411411411411,
+          "threshold": 0.5
+        }
+      }
+    },
+    "current_word_policy": {
+      "examples": 8443,
+      "positive_examples": 3450,
+      "flagged": 238,
+      "true_positives": 198,
+      "false_positives": 40,
+      "false_negatives": 3252,
+      "precision": 0.8319327731092437,
+      "recall": 0.057391304347826085
+    }
+  },
+  "source": {
+    "evidence_report_sha256": "1d4c2527e1a686892fa8b972a4ad06a2815a36032723530bdf97ba96d78d9414",
+    "calibration_report_sha256": "672d1891494709a8dc654896c95c630149c2ce4d08e80527f340e30d13e651d4"
+  }
+}

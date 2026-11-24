@@ -1,5 +1,6 @@
 # pyright: reportPrivateUsage=false
 
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,7 @@ from pronunciation_coach.calibrated_analysis import (
 )
 from pronunciation_coach.ctc_scoring import ConstrainedCTCScore, PhonePosteriorScore
 from pronunciation_coach.errors import CoachError, ErrorCode
+from pronunciation_coach.phone_policy import PhonePolicy, load_phone_policy
 from pronunciation_coach.prompts import get_prompt
 from pronunciation_coach.recognizers.wav2vec2_espeak import PosteriorRecognition, _resolve_device
 from pronunciation_coach.schemas import WordStatus
@@ -48,6 +50,36 @@ def _policy() -> WordPolicy:
             "intercept": 0.0,
             "coefficients": [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
             "word_probability_threshold": 0.5,
+        },
+    )
+
+
+def _phone_policy() -> PhonePolicy:
+    return PhonePolicy(
+        id="test-phone-policy",
+        version=1,
+        model_id="test-model",
+        model_revision="test-revision",
+        calibration_report_sha256="1" * 64,
+        final_report_sha256="2" * 64,
+        warning_probability_threshold=0.5,
+        candidate_model={
+            "version": 1,
+            "method": "l2-logistic-regression",
+            "continuous_feature_names": [
+                "expected_mean_log_probability",
+                "alternative_mean_log_probability",
+                "log_posterior_margin",
+                "log_frame_count",
+            ],
+            "continuous_means": [0.0] * 4,
+            "continuous_scales": [1.0] * 4,
+            "expected_phone_categories": ["<other>"],
+            "alternative_phone_categories": ["<other>"],
+            "intercept": 0.0,
+            "coefficients": [0.0, 0.0, -1.0, 0.0, 0.0, 0.0],
+            "red_probability_threshold": 0.5,
+            "yellow_probability_threshold": 0.2,
         },
     )
 
@@ -122,6 +154,22 @@ def test_calibrated_analyzer_returns_conservative_word_probabilities() -> None:
     assert all(not word.evidence and not word.tips for word in result.words)
 
 
+def test_phone_policy_adds_warning_without_changing_red_decision() -> None:
+    word_policy = _policy()
+    word_policy.candidate_model["word_probability_threshold"] = 0.999
+    analyzer = CalibratedAnalyzer(FakePosteriorRecognizer(), word_policy, _phone_policy())
+
+    result = analyzer.analyze(get_prompt("thought-about-it"), _speech_audio())
+
+    assert result.words[0].status is WordStatus.WARNING
+    assert result.words[1].status is WordStatus.NO_PROBLEM_DETECTED
+    assert result.words[0].phone_error_probability is not None
+    assert result.words[0].phone_error_probability > 0.5
+    assert result.policy is not None
+    assert result.policy.phone_policy_id == "test-phone-policy"
+    assert result.policy.phone_warning_probability_threshold == 0.5
+
+
 def test_silent_audio_returns_no_partial_judgment() -> None:
     recognizer = FakePosteriorRecognizer()
     analyzer = CalibratedAnalyzer(recognizer, _policy())
@@ -151,6 +199,21 @@ def test_bundled_policy_matches_the_frozen_calibration() -> None:
         assert value == source["candidate_model"][key]
 
 
+def test_bundled_phone_policy_matches_frozen_l2arctic_reports() -> None:
+    policy = load_phone_policy()
+    calibration_path = Path("benchmarks/reports/l2arctic-phone-calibration-v1.json")
+    final_path = Path("benchmarks/reports/l2arctic-phone-final-v1.json")
+    calibration: dict[str, Any] = json.loads(calibration_path.read_text(encoding="utf-8"))
+
+    assert policy.warning_probability_threshold == 0.42
+    assert (
+        policy.calibration_report_sha256
+        == hashlib.sha256(calibration_path.read_bytes()).hexdigest()
+    )
+    assert policy.final_report_sha256 == hashlib.sha256(final_path.read_bytes()).hexdigest()
+    assert policy.candidate_model == calibration["candidate_model"]
+
+
 def test_unavailable_explicit_device_has_a_stable_error(monkeypatch: MonkeyPatch) -> None:
     def unavailable() -> bool:
         return False
@@ -173,12 +236,12 @@ def test_audio_cli_emits_stage2_json(
     def fake_get_analyzer(_cache: Path, _device: str) -> CalibratedAnalyzer:
         return analyzer
 
-    monkeypatch.setattr("pronunciation_coach.audio_cli._get_analyzer", fake_get_analyzer)
+    monkeypatch.setattr("pronunciation_coach.audio_cli.get_analyzer", fake_get_analyzer)
 
     exit_code = main(["--prompt", "thought-about-it", "--audio", str(path)])
     output: dict[str, Any] = json.loads(capsys.readouterr().out)
 
     assert exit_code == 0
-    assert output["schema_version"] == "1.2"
+    assert output["schema_version"] == "1.3"
     assert output["policy"]["id"] == "test-policy"
     assert output["words"][0]["status"] == "review"
