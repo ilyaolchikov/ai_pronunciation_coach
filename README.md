@@ -93,8 +93,7 @@ uv run pronunciation-coach analyze \
   --fake-observed "aɪ s ɔː t ɐ b aʊ t ɪ t"
 ```
 
-The command emits the versioned JSON result contract. See [plan.md](plan.md) for stage
-boundaries, risks, and the acoustic feasibility gate.
+The command emits the versioned JSON result contract.
 
 Analyze a supported prompt from a local WAV/FLAC/AIFF recording after prefetching:
 

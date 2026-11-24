@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "purpose": "development-only-intentional-single-phone-localization",
+  "items": [
+    {
+      "id": "three-correct",
+      "speaker": "developer-1",
+      "prompt_id": "three-free-throws",
+      "audio_path": "audio/three-correct.wav",
+      "spoken_text": "Three free throws."
+    },
+    {
+      "id": "three-to-free",
+      "speaker": "developer-1",
+      "prompt_id": "three-free-throws",
+      "audio_path": "audio/three-to-free.wav",
+      "spoken_text": "Free free throws.",
+      "target_word_index": 0,
+      "expected_phone": "θ",
+      "substituted_phone": "f"
+    },
+    {
+      "id": "think-correct",
+      "speaker": "developer-1",
+      "prompt_id": "think-about-it",
+      "audio_path": "audio/think-correct.wav",
+      "spoken_text": "Think about it."
+    },
+    {
+      "id": "think-to-sink",
+      "speaker": "developer-1",
+      "prompt_id": "think-about-it",
+      "audio_path": "audio/think-to-sink.wav",
+      "spoken_text": "Sink about it.",
+      "target_word_index": 0,
+      "expected_phone": "θ",
+      "substituted_phone": "s"
+    },
+    {
+      "id": "right-correct",
+      "speaker": "developer-1",
+      "prompt_id": "turn-right-here",
+      "audio_path": "audio/right-correct.wav",
+      "spoken_text": "Turn right here."
+    },
+    {
+      "id": "right-to-light",
+      "speaker": "developer-1",
+      "prompt_id": "turn-right-here",
+      "audio_path": "audio/right-to-light.wav",
+      "spoken_text": "Turn light here.",
+      "target_word_index": 1,
+      "expected_phone": "ɹ",
+      "substituted_phone": "l"
+    }
+  ]
+}
