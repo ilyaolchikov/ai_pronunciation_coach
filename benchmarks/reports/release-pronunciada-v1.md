@@ -2,11 +2,11 @@
 
 ## Decision
 
-**Experimental — acceptance gates pass, policy freeze pending.**
+**Release-ready — all frozen acceptance gates pass.**
 
 The human-corpus, performance, automated UI navigation, and audio non-retention gates pass at
-strictness `0.75`. The release policy still needs the commit SHA of the current implementation
-snapshot before the release can be marked reproducibly frozen.
+strictness `0.75`. The policy is frozen against implementation commit
+`f3b18df50a609ec911f278d3f111f3f1e86ca087`.
 
 ## Configuration
 

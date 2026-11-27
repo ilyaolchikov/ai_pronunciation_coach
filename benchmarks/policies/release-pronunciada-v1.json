@@ -1,8 +1,8 @@
 {
   "id": "release-pronunciada-v1",
   "version": 1,
-  "status": "draft-awaiting-source-commit",
-  "source_commit": null,
+  "status": "frozen",
+  "source_commit": "f3b18df50a609ec911f278d3f111f3f1e86ca087",
   "runtime": {
     "package": "pronunciada==1.1.0",
     "language": "en",

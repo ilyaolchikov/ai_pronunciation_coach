@@ -2,19 +2,19 @@
   "report_version": 1,
   "id": "release-pronunciada-v1",
   "decision": {
-    "status": "experimental",
+    "status": "release-ready",
     "all_frozen_acceptance_gates_pass": true,
-    "release_ready": false,
-    "reason": "Accuracy, performance, and automated UI gates pass, but the release policy still needs the commit SHA of the current implementation snapshot."
+    "release_ready": true,
+    "reason": "All frozen accuracy, performance, and automated UI gates pass."
   },
   "provenance": {
-    "base_commit": "7cde107c11659dece45886c95d0f2394906d7aa9",
-    "evaluated_worktree_had_uncommitted_release_changes": true,
+    "implementation_commit": "f3b18df50a609ec911f278d3f111f3f1e86ca087",
+    "benchmark_results_materialized_in_implementation_commit": true,
     "policy": {
       "path": "benchmarks/policies/release-pronunciada-v1.json",
-      "status": "draft-awaiting-source-commit",
-      "source_commit": null,
-      "sha256": "fef33ea65704b6413b81510689e57f18b35c0d6bb6b1c99392f5a03fe3ebee6b"
+      "status": "frozen",
+      "source_commit": "f3b18df50a609ec911f278d3f111f3f1e86ca087",
+      "sha256": "08d2333b15e31f261cc418d93476f07745df8a573be5298e21631438d1cfae3d"
     },
     "artifacts": {
       "human_corpora": {
