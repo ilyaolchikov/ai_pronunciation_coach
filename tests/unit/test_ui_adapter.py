@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import numpy as np
-import soundfile as sf
+from numpy.typing import NDArray
 from pytest import MonkeyPatch
 
 from pronunciation_coach.audio import NormalizedAudio
@@ -10,6 +10,7 @@ from pronunciation_coach.schemas import (
     AnalysisResult,
     ModelMetadata,
     Prompt,
+    ScoringSettings,
     WordResult,
     WordStatus,
 )
@@ -30,66 +31,76 @@ class FakeAnalyzer:
     def analyze(self, prompt: Prompt, audio: NormalizedAudio) -> AnalysisResult:
         self.calls += 1
         assert audio.metadata.speech_region is not None
+        probabilities = (0.2, 0.7, 0.9, 0.9)
+        statuses = (
+            WordStatus.REVIEW,
+            WordStatus.WARNING,
+            WordStatus.NO_PROBLEM_DETECTED,
+            WordStatus.NO_PROBLEM_DETECTED,
+        )
         words = tuple(
             WordResult(
-                text=word.text,
-                status=WordStatus.REVIEW if index == 0 else WordStatus.NO_PROBLEM_DETECTED,
-                evidence=(),
-                review_probability=(0.8, 0.2, 0.1, 0.1)[index],
+                text=word,
+                status=statuses[index],
+                acceptance_probability=probabilities[index],
+                phones=(),
             )
             for index, word in enumerate(prompt.words)
         )
-        expected = tuple(phone for word in prompt.words for phone in word.phone_variants[0])
         return AnalysisResult(
             prompt_id=prompt.id,
             prompt_catalogue_version=prompt.catalogue_version,
             expected_text=prompt.text,
-            selected_variant_indices=tuple(0 for _ in prompt.words),
-            alignment_cost=0,
-            expected_phones=expected,
-            observed_phones=expected,
             audio=audio.metadata,
             model=ModelMetadata(
-                backend="fake",
-                revision="test",
+                version="test",
+                acoustic_model="test",
+                precision="int8",
                 inference_ms=12,
-                device="cpu",
             ),
+            scoring=ScoringSettings(strictness=0.75, review_below=0.5, warning_below=0.8),
             words=words,
             limitations=("This is not proof of an error.",),
             warnings=("Test warning.",),
         )
 
 
-def _speech() -> tuple[int, np.ndarray]:
+def _speech() -> tuple[int, NDArray[np.int16]]:
     time = np.arange(16_000, dtype=np.float32) / 16_000
     samples = (16_000 * np.sin(2 * np.pi * 220 * time)).astype(np.int16)
     return 16_000, samples
 
 
-def test_adapter_returns_word_states_notes_and_technical_details(tmp_path: Path) -> None:
+def test_adapter_returns_only_pronunciada_scores_and_metadata() -> None:
     analyzer = FakeAnalyzer()
 
-    result = analyze_for_ui(
-        "thought-about-it", _speech(), lambda: analyzer, recording_directory=tmp_path
-    )
+    result = analyze_for_ui("thought-about-it", _speech(), lambda: analyzer)
 
     assert analyzer.calls == 1
-    assert result.highlights[0] == ("I", REVIEW_LABEL)
-    assert result.highlights[1] == ("thought", WARNING_LABEL)
-    assert {category for _, category in result.highlights[2:]} == {NO_PROBLEM_LABEL}
+    assert result.highlights == [
+        ("I", REVIEW_LABEL),
+        ("thought", WARNING_LABEL),
+        ("about", NO_PROBLEM_LABEL),
+        ("it", NO_PROBLEM_LABEL),
+    ]
     assert "1 to review, 1 to check again" in result.status
     assert "inference: 12 ms" in result.status
     assert "not proof" in result.notes
     assert "Test warning" in result.notes
-    assert result.details["analysis"]["schema_version"] == "1.3"
-    saved_recording = Path(result.details["saved_recording"])
-    assert saved_recording.parent == tmp_path
-    assert saved_recording.suffix == ".wav"
-    assert sf.info(saved_recording).samplerate == 16_000
+    assert set(result.details) == {"model_load_or_cache_lookup_ms", "analysis"}
+    analysis = result.details["analysis"]
+    assert analysis["schema_version"] == "2.0"
+    assert analysis["words"][1] == {
+        "text": "thought",
+        "status": "warning",
+        "acceptance_probability": 0.7,
+        "phones": [],
+    }
+    assert "observed_phones" not in analysis
+    assert "review_probability" not in analysis["words"][0]
 
 
-def test_adapter_rejects_silence_before_loading_the_model(tmp_path: Path) -> None:
+def test_adapter_rejects_silence_before_loading_the_model() -> None:
     provider_calls = 0
 
     def provider() -> Analyzer:
@@ -101,42 +112,28 @@ def test_adapter_rejects_silence_before_loading_the_model(tmp_path: Path) -> Non
         "thought-about-it",
         (16_000, np.zeros(8_000, dtype=np.int16)),
         provider,
-        recording_directory=tmp_path,
     )
 
     assert provider_calls == 0
     assert result.highlights == []
     assert result.details["error"]["code"] == "audio_silent"
-    assert Path(result.details["saved_recording"]).is_file()
     assert "microphone" in result.notes
 
 
-def test_adapter_requires_audio_without_loading_the_model(tmp_path: Path) -> None:
-    def provider() -> Analyzer:
-        return FakeAnalyzer()
-
-    result = analyze_for_ui("thought-about-it", None, provider, recording_directory=tmp_path)
+def test_adapter_requires_audio_without_loading_the_model() -> None:
+    result = analyze_for_ui("thought-about-it", None, lambda: FakeAnalyzer())
 
     assert result.details["error"]["code"] == "audio_invalid"
     assert "Record or upload" in result.status
+
+
+def test_adapter_does_not_persist_browser_audio(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
+    monkeypatch.chdir(tmp_path)
+
+    result = analyze_for_ui("thought-about-it", _speech(), lambda: FakeAnalyzer())
+
+    assert "analysis" in result.details
     assert not tuple(tmp_path.iterdir())
-
-
-def test_save_failure_prevents_analysis(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
-    analyzer = FakeAnalyzer()
-
-    def fail_write(*_args: object, **_kwargs: object) -> None:
-        raise OSError("disk unavailable")
-
-    monkeypatch.setattr("pronunciation_coach.ui_adapter.sf.write", fail_write)
-
-    result = analyze_for_ui(
-        "thought-about-it", _speech(), lambda: analyzer, recording_directory=tmp_path
-    )
-
-    assert analyzer.calls == 0
-    assert result.details["error"]["code"] == "audio_save_failed"
-    assert not tuple(tmp_path.glob("*"))
 
 
 def test_prompt_text_uses_the_catalogue_sentence() -> None:

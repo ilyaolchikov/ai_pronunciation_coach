@@ -4,193 +4,178 @@
     "text": "I thought about it.",
     "locale": "en-us",
     "words": [
-      {"text": "I", "phone_variants": [["aɪ"]]},
-      {"text": "thought", "phone_variants": [["θ", "ɔː", "t"]]},
-      {"text": "about", "phone_variants": [["ɐ", "b", "aʊ", "t"]]},
-      {"text": "it", "phone_variants": [["ɪ", "t"]]}
+      "I",
+      "thought",
+      "about",
+      "it"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "she-sells-seashells",
     "text": "She sells seashells.",
     "locale": "en-us",
     "words": [
-      {"text": "She", "phone_variants": [["ʃ", "iː"]]},
-      {"text": "sells", "phone_variants": [["s", "ɛ", "l", "z"]]},
-      {"text": "seashells", "phone_variants": [["s", "iː", "ʃ", "ɛ", "l", "z"]]}
+      "She",
+      "sells",
+      "seashells"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "three-free-throws",
     "text": "Three free throws.",
     "locale": "en-us",
     "words": [
-      {"text": "Three", "phone_variants": [["θ", "ɹ", "iː"]]},
-      {"text": "free", "phone_variants": [["f", "ɹ", "iː"]]},
-      {"text": "throws", "phone_variants": [["θ", "ɹ", "oʊ", "z"]]}
+      "Three",
+      "free",
+      "throws"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "think-about-it",
     "text": "Think about it.",
     "locale": "en-us",
     "words": [
-      {"text": "Think", "phone_variants": [["θ", "ɪ", "ŋ", "k"]]},
-      {"text": "about", "phone_variants": [["ɐ", "b", "aʊ", "t"]]},
-      {"text": "it", "phone_variants": [["ɪ", "t"]]}
+      "Think",
+      "about",
+      "it"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "turn-right-here",
     "text": "Turn right here.",
     "locale": "en-us",
     "words": [
-      {"text": "Turn", "phone_variants": [["t", "ɜː", "n"]]},
-      {"text": "right", "phone_variants": [["ɹ", "aɪ", "t"]]},
-      {"text": "here", "phone_variants": [["h", "ɪɹ"]]}
+      "Turn",
+      "right",
+      "here"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "the-weather-is-warm-today",
     "text": "The weather is warm today.",
     "locale": "en-us",
     "words": [
-      {"text": "The", "phone_variants": [["ð", "ə"]]},
-      {"text": "weather", "phone_variants": [["w", "ɛ", "ð", "ɚ"]]},
-      {"text": "is", "phone_variants": [["ɪ", "z"]]},
-      {"text": "warm", "phone_variants": [["w", "ɔːɹ", "m"]]},
-      {"text": "today", "phone_variants": [["t", "ə", "d", "eɪ"]]}
+      "The",
+      "weather",
+      "is",
+      "warm",
+      "today"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "please-open-the-blue-door",
     "text": "Please open the blue door.",
     "locale": "en-us",
     "words": [
-      {"text": "Please", "phone_variants": [["p", "l", "iː", "z"]]},
-      {"text": "open", "phone_variants": [["oʊ", "p", "ə", "n"]]},
-      {"text": "the", "phone_variants": [["ð", "ə"]]},
-      {"text": "blue", "phone_variants": [["b", "l", "uː"]]},
-      {"text": "door", "phone_variants": [["d", "ɔːɹ"]]}
+      "Please",
+      "open",
+      "the",
+      "blue",
+      "door"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "fresh-fish-swim-fast",
     "text": "Fresh fish swim fast.",
     "locale": "en-us",
     "words": [
-      {"text": "Fresh", "phone_variants": [["f", "ɹ", "ɛ", "ʃ"]]},
-      {"text": "fish", "phone_variants": [["f", "ɪ", "ʃ"]]},
-      {"text": "swim", "phone_variants": [["s", "w", "ɪ", "m"]]},
-      {"text": "fast", "phone_variants": [["f", "æ", "s", "t"]]}
+      "Fresh",
+      "fish",
+      "swim",
+      "fast"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "the-red-light-is-bright",
     "text": "The red light is bright.",
     "locale": "en-us",
     "words": [
-      {"text": "The", "phone_variants": [["ð", "ə"]]},
-      {"text": "red", "phone_variants": [["ɹ", "ɛ", "d"]]},
-      {"text": "light", "phone_variants": [["l", "aɪ", "t"]]},
-      {"text": "is", "phone_variants": [["ɪ", "z"]]},
-      {"text": "bright", "phone_variants": [["b", "ɹ", "aɪ", "t"]]}
+      "The",
+      "red",
+      "light",
+      "is",
+      "bright"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "she-chose-cheap-chairs",
     "text": "She chose cheap chairs.",
     "locale": "en-us",
     "words": [
-      {"text": "She", "phone_variants": [["ʃ", "iː"]]},
-      {"text": "chose", "phone_variants": [["tʃ", "oʊ", "z"]]},
-      {"text": "cheap", "phone_variants": [["tʃ", "iː", "p"]]},
-      {"text": "chairs", "phone_variants": [["tʃ", "ɛɹ", "z"]]}
+      "She",
+      "chose",
+      "cheap",
+      "chairs"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "very-brave-people-vote",
     "text": "Very brave people vote.",
     "locale": "en-us",
     "words": [
-      {"text": "Very", "phone_variants": [["v", "ɛ", "ɹ", "i"]]},
-      {"text": "brave", "phone_variants": [["b", "ɹ", "eɪ", "v"]]},
-      {"text": "people", "phone_variants": [["p", "iː", "p", "əl"]]},
-      {"text": "vote", "phone_variants": [["v", "oʊ", "t"]]}
+      "Very",
+      "brave",
+      "people",
+      "vote"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "peter-packed-paper-bags",
     "text": "Peter packed paper bags.",
     "locale": "en-us",
     "words": [
-      {"text": "Peter", "phone_variants": [["p", "iː", "ɾ", "ɚ"]]},
-      {"text": "packed", "phone_variants": [["p", "æ", "k", "t"]]},
-      {"text": "paper", "phone_variants": [["p", "eɪ", "p", "ɚ"]]},
-      {"text": "bags", "phone_variants": [["b", "æ", "ɡ", "z"]]}
+      "Peter",
+      "packed",
+      "paper",
+      "bags"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "good-kids-can-cook",
     "text": "Good kids can cook.",
     "locale": "en-us",
     "words": [
-      {"text": "Good", "phone_variants": [["ɡ", "ʊ", "d"]]},
-      {"text": "kids", "phone_variants": [["k", "ɪ", "d", "z"]]},
-      {"text": "can", "phone_variants": [["k", "æ", "n"]]},
-      {"text": "cook", "phone_variants": [["k", "ʊ", "k"]]}
+      "Good",
+      "kids",
+      "can",
+      "cook"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "jane-enjoys-orange-juice",
     "text": "Jane enjoys orange juice.",
     "locale": "en-us",
     "words": [
-      {"text": "Jane", "phone_variants": [["dʒ", "eɪ", "n"]]},
-      {"text": "enjoys", "phone_variants": [["ɛ", "n", "dʒ", "ɔɪ", "z"]]},
-      {"text": "orange", "phone_variants": [["ɔ", "ɹ", "ɪ", "n", "dʒ"]]},
-      {"text": "juice", "phone_variants": [["dʒ", "uː", "s"]]}
+      "Jane",
+      "enjoys",
+      "orange",
+      "juice"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   },
   {
     "id": "those-three-brothers-think",
     "text": "Those three brothers think.",
     "locale": "en-us",
     "words": [
-      {"text": "Those", "phone_variants": [["ð", "oʊ", "z"]]},
-      {"text": "three", "phone_variants": [["θ", "ɹ", "iː"]]},
-      {"text": "brothers", "phone_variants": [["b", "ɹ", "ʌ", "ð", "ɚ", "z"]]},
-      {"text": "think", "phone_variants": [["θ", "ɪ", "ŋ", "k"]]}
+      "Those",
+      "three",
+      "brothers",
+      "think"
     ],
-    "catalogue_version": 1,
-    "generated_with": {"phonemizer": "3.6.0", "espeak_ng": "1.52.0"}
+    "catalogue_version": 1
   }
 ]

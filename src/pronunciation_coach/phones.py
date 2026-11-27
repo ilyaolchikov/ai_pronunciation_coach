@@ -1,7 +1,6 @@
-"""Phone token parsing and Unicode normalization."""
+"""Phone token Unicode normalization for corpus annotations."""
 
 import unicodedata
-from collections.abc import Iterable
 
 
 def normalize_phone(phone: str) -> str:
@@ -11,13 +10,3 @@ def normalize_phone(phone: str) -> str:
     if any(character.isspace() for character in normalized):
         raise ValueError(f"phone token must not contain whitespace: {phone!r}")
     return normalized
-
-
-def normalize_phones(phones: Iterable[str]) -> tuple[str, ...]:
-    return tuple(normalize_phone(phone) for phone in phones)
-
-
-def parse_phone_sequence(sequence: str) -> tuple[str, ...]:
-    if not sequence.strip():
-        return ()
-    return normalize_phones(sequence.split())

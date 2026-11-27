@@ -12,11 +12,19 @@ PROMPT_ADAPTER = TypeAdapter(tuple[Prompt, ...])
 
 
 def load_prompts() -> tuple[Prompt, ...]:
-    resource = files("pronunciation_coach.data").joinpath("prompts.v1.json")
+    data = files("pronunciation_coach.data")
     try:
-        raw = json.loads(resource.read_text(encoding="utf-8"))
-        prompts = PROMPT_ADAPTER.validate_python(raw)
-    except (json.JSONDecodeError, OSError, ValidationError) as error:
+        frozen: object = json.loads(data.joinpath("prompts.v1.json").read_text(encoding="utf-8"))
+        additions: object = json.loads(
+            data.joinpath("practice-prompts.v2.json").read_text(encoding="utf-8")
+        )
+        if not isinstance(frozen, list) or not isinstance(additions, list):
+            raise ValueError("prompt catalogue resources must be arrays")
+        prompts = tuple(
+            prompt.model_copy(update={"catalogue_version": 2})
+            for prompt in PROMPT_ADAPTER.validate_python([*frozen, *additions])
+        )
+    except (json.JSONDecodeError, OSError, ValidationError, ValueError) as error:
         raise CoachError(ErrorCode.CATALOGUE_INVALID, "Prompt catalogue is invalid") from error
 
     prompt_ids = [prompt.id for prompt in prompts]

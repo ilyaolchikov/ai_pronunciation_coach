@@ -20,22 +20,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-L2-ARCTIC-derived artifacts
----------------------------
+Dataset-derived benchmark artifacts
+-----------------------------------
 
 The MIT License above applies to original software and documentation in this
-repository. It does not relicense the following artifacts derived from the
-L2-ARCTIC corpus:
+repository. It does not relicense dataset-derived material in these benchmark
+artifacts.
 
-- src/pronunciation_coach/data/phone_policy.v1.json
+SpeechOcean762-derived material:
+
+- benchmarks/manifests/final-test-v1.json
+- the SpeechOcean sections of benchmarks/reports/pronunciada-corpora-v1.json
+- the SpeechOcean sections of benchmarks/reports/release-pronunciada-v1.json
+- the SpeechOcean sections of benchmarks/reports/release-pronunciada-v1.md
+
+SpeechOcean762 is licensed under Creative Commons Attribution 4.0
+International: https://creativecommons.org/licenses/by/4.0/
+
+Required attribution:
+
+Junbo Zhang, Zhiwen Zhang, Yongqing Wang, Zhiyong Yan, Qiong Song,
+Yukai Huang, Ke Li, Daniel Povey, and Yujun Wang,
+"speechocean762: An Open-Source Non-native English Speech Corpus For
+Pronunciation Assessment," Interspeech 2021.
+https://www.openslr.org/101/
+
+L2-ARCTIC-derived material:
+
 - benchmarks/manifests/l2arctic-speakers-v1.json
-- benchmarks/reports/l2arctic-integrity-v1.json
-- benchmarks/reports/l2arctic-phone-calibration-v1.json
-- benchmarks/reports/l2arctic-phone-final-v1.json
-- benchmarks/reports/l2arctic-speechocean-regression-v1.json
+- the L2-ARCTIC sections of benchmarks/reports/pronunciada-corpora-v1.json
+- benchmarks/reports/performance-v1.json
+- the L2-ARCTIC sections of benchmarks/reports/release-pronunciada-v1.json
+- the L2-ARCTIC sections of benchmarks/reports/release-pronunciada-v1.md
 
-These artifacts are distributed for non-commercial use under the L2-ARCTIC
-corpus terms, Creative Commons Attribution-NonCommercial 4.0 International:
+This material is distributed for non-commercial use under the L2-ARCTIC corpus
+terms, Creative Commons Attribution-NonCommercial 4.0 International:
 https://creativecommons.org/licenses/by-nc/4.0/
 
 Required attribution:

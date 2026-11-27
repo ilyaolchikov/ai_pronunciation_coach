@@ -1,0 +1,627 @@
+{
+  "report_version": 1,
+  "experiment": "pronunciada-all-human-corpora-v1",
+  "runtime": {
+    "package": "pronunciada==1.1.0",
+    "language": "en",
+    "acoustic_model": "zipa-small-crctc-500k",
+    "revision": "dfe87c97662606fa6db90ad06f627d4363314744",
+    "precision": "int8"
+  },
+  "dataset_manifests": {
+    "speechocean": {
+      "path": "benchmarks/manifests/final-test-v1.json",
+      "sha256": "245fe537979586d255618fbaa82fbf42f8649c3730c801b762af53795db3e0aa"
+    },
+    "l2arctic": {
+      "path": "benchmarks/manifests/l2arctic-speakers-v1.json",
+      "sha256": "1a0b79a71c3da3baddcbf9a25d98a3eb6e878c698fe95aeb8bcad3f51fda8ada"
+    }
+  },
+  "speechocean": {
+    "metrics": {
+      "completed_recordings": 1260,
+      "failed_recordings": 0,
+      "words": 8124,
+      "expert_problem_words": 605,
+      "excluded_unmapped_problem_words": 0,
+      "all_highlights": {
+        "true_positives": 546,
+        "false_positives": 1654,
+        "false_negatives": 59,
+        "true_negatives": 5865,
+        "precision": 0.24818181818181817,
+        "recall": 0.9024793388429752,
+        "f1": 0.3893048128342246,
+        "false_positive_rate": 0.21997606064636255
+      },
+      "red_highlights": {
+        "true_positives": 428,
+        "false_positives": 565,
+        "false_negatives": 177,
+        "true_negatives": 6954,
+        "precision": 0.4310171198388721,
+        "recall": 0.7074380165289256,
+        "f1": 0.5356695869837296,
+        "false_positive_rate": 0.07514297113977923
+      },
+      "latency_p50_ms": 35.82387510687113,
+      "latency_p95_ms": 60.19812496379018,
+      "expected_recordings": 1260,
+      "completion_rate": 1.0,
+      "subgroups": {
+        "age_group": {
+          "adult": {
+            "completed_recordings": 620,
+            "failed_recordings": 0,
+            "words": 4400,
+            "expert_problem_words": 398,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 355,
+              "false_positives": 845,
+              "false_negatives": 43,
+              "true_negatives": 3157,
+              "precision": 0.29583333333333334,
+              "recall": 0.8919597989949749,
+              "f1": 0.444305381727159,
+              "false_positive_rate": 0.21114442778610695
+            },
+            "red_highlights": {
+              "true_positives": 270,
+              "false_positives": 271,
+              "false_negatives": 128,
+              "true_negatives": 3731,
+              "precision": 0.49907578558225507,
+              "recall": 0.678391959798995,
+              "f1": 0.5750798722044729,
+              "false_positive_rate": 0.06771614192903548
+            },
+            "latency_p50_ms": 37.29500016197562,
+            "latency_p95_ms": 67.66000017523766
+          },
+          "child": {
+            "completed_recordings": 640,
+            "failed_recordings": 0,
+            "words": 3724,
+            "expert_problem_words": 207,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 191,
+              "false_positives": 809,
+              "false_negatives": 16,
+              "true_negatives": 2708,
+              "precision": 0.191,
+              "recall": 0.9227053140096618,
+              "f1": 0.31648715824357915,
+              "false_positive_rate": 0.23002558999147
+            },
+            "red_highlights": {
+              "true_positives": 158,
+              "false_positives": 294,
+              "false_negatives": 49,
+              "true_negatives": 3223,
+              "precision": 0.3495575221238938,
+              "recall": 0.7632850241545893,
+              "f1": 0.47951441578148707,
+              "false_positive_rate": 0.08359397213534261
+            },
+            "latency_p50_ms": 34.66237476095557,
+            "latency_p95_ms": 55.265875067561865
+          }
+        },
+        "gender": {
+          "f": {
+            "completed_recordings": 580,
+            "failed_recordings": 0,
+            "words": 3941,
+            "expert_problem_words": 281,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 254,
+              "false_positives": 667,
+              "false_negatives": 27,
+              "true_negatives": 2993,
+              "precision": 0.2757871878393051,
+              "recall": 0.9039145907473309,
+              "f1": 0.42262895174708814,
+              "false_positive_rate": 0.18224043715846994
+            },
+            "red_highlights": {
+              "true_positives": 191,
+              "false_positives": 216,
+              "false_negatives": 90,
+              "true_negatives": 3444,
+              "precision": 0.4692874692874693,
+              "recall": 0.6797153024911032,
+              "f1": 0.555232558139535,
+              "false_positive_rate": 0.05901639344262295
+            },
+            "latency_p50_ms": 35.80725006759167,
+            "latency_p95_ms": 61.563082970678806
+          },
+          "m": {
+            "completed_recordings": 680,
+            "failed_recordings": 0,
+            "words": 4183,
+            "expert_problem_words": 324,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 292,
+              "false_positives": 987,
+              "false_negatives": 32,
+              "true_negatives": 2872,
+              "precision": 0.22830336200156373,
+              "recall": 0.9012345679012346,
+              "f1": 0.36431690580162196,
+              "false_positive_rate": 0.25576574242031613
+            },
+            "red_highlights": {
+              "true_positives": 237,
+              "false_positives": 349,
+              "false_negatives": 87,
+              "true_negatives": 3510,
+              "precision": 0.4044368600682594,
+              "recall": 0.7314814814814815,
+              "f1": 0.5208791208791209,
+              "false_positive_rate": 0.09043793728945322
+            },
+            "latency_p50_ms": 35.82433331757784,
+            "latency_p95_ms": 59.616957791149616
+          }
+        }
+      }
+    },
+    "detail_report": "benchmark-data/pronunciada-speechocean-final-v1.json"
+  },
+  "l2arctic": {
+    "metrics": {
+      "completed_recordings": 3599,
+      "failed_recordings": 0,
+      "words": 33996,
+      "expert_problem_words": 14130,
+      "excluded_unmapped_problem_words": 5,
+      "all_highlights": {
+        "true_positives": 3054,
+        "false_positives": 908,
+        "false_negatives": 11076,
+        "true_negatives": 18958,
+        "precision": 0.7708228167592125,
+        "recall": 0.21613588110403398,
+        "f1": 0.33760778244527967,
+        "false_positive_rate": 0.04570623175274338
+      },
+      "red_highlights": {
+        "true_positives": 1378,
+        "false_positives": 224,
+        "false_negatives": 12752,
+        "true_negatives": 19642,
+        "precision": 0.8601747815230961,
+        "recall": 0.09752300070771408,
+        "f1": 0.17518433765573355,
+        "false_positive_rate": 0.01127554615926709
+      },
+      "latency_p50_ms": 38.244834169745445,
+      "latency_p95_ms": 55.20174978300929,
+      "expected_recordings": 3599,
+      "completion_rate": 1.0,
+      "subgroups": {
+        "partition": {
+          "development": {
+            "completed_recordings": 900,
+            "failed_recordings": 0,
+            "words": 8505,
+            "expert_problem_words": 3613,
+            "excluded_unmapped_problem_words": 1,
+            "all_highlights": {
+              "true_positives": 789,
+              "false_positives": 180,
+              "false_negatives": 2824,
+              "true_negatives": 4712,
+              "precision": 0.8142414860681114,
+              "recall": 0.21837807915859397,
+              "f1": 0.3443910955914448,
+              "false_positive_rate": 0.03679476696647588
+            },
+            "red_highlights": {
+              "true_positives": 387,
+              "false_positives": 38,
+              "false_negatives": 3226,
+              "true_negatives": 4854,
+              "precision": 0.9105882352941177,
+              "recall": 0.10711320232493772,
+              "f1": 0.19167904903417535,
+              "false_positive_rate": 0.00776778413736713
+            },
+            "latency_p50_ms": 37.95045940205455,
+            "latency_p95_ms": 56.26304168254137
+          },
+          "final-test": {
+            "completed_recordings": 900,
+            "failed_recordings": 0,
+            "words": 8500,
+            "expert_problem_words": 3591,
+            "excluded_unmapped_problem_words": 1,
+            "all_highlights": {
+              "true_positives": 782,
+              "false_positives": 242,
+              "false_negatives": 2809,
+              "true_negatives": 4667,
+              "precision": 0.763671875,
+              "recall": 0.2177666388192704,
+              "f1": 0.3388949079089924,
+              "false_positive_rate": 0.049297209207577915
+            },
+            "red_highlights": {
+              "true_positives": 362,
+              "false_positives": 70,
+              "false_negatives": 3229,
+              "true_negatives": 4839,
+              "precision": 0.8379629629629629,
+              "recall": 0.10080757449178501,
+              "f1": 0.1799652000994283,
+              "false_positive_rate": 0.014259523324506009
+            },
+            "latency_p50_ms": 39.7843336686492,
+            "latency_p95_ms": 56.7115000449121
+          },
+          "train": {
+            "completed_recordings": 1799,
+            "failed_recordings": 0,
+            "words": 16991,
+            "expert_problem_words": 6926,
+            "excluded_unmapped_problem_words": 3,
+            "all_highlights": {
+              "true_positives": 1483,
+              "false_positives": 486,
+              "false_negatives": 5443,
+              "true_negatives": 9579,
+              "precision": 0.7531742001015744,
+              "recall": 0.21412070459139473,
+              "f1": 0.33344575604272064,
+              "false_positive_rate": 0.048286140089418776
+            },
+            "red_highlights": {
+              "true_positives": 629,
+              "false_positives": 116,
+              "false_negatives": 6297,
+              "true_negatives": 9949,
+              "precision": 0.8442953020134228,
+              "recall": 0.09081721051111753,
+              "f1": 0.1639942641115891,
+              "false_positive_rate": 0.011525086934923
+            },
+            "latency_p50_ms": 37.71345783025026,
+            "latency_p95_ms": 54.14520809426904
+          }
+        },
+        "first_language": {
+          "Arabic": {
+            "completed_recordings": 599,
+            "failed_recordings": 0,
+            "words": 5662,
+            "expert_problem_words": 1707,
+            "excluded_unmapped_problem_words": 1,
+            "all_highlights": {
+              "true_positives": 379,
+              "false_positives": 162,
+              "false_negatives": 1328,
+              "true_negatives": 3793,
+              "precision": 0.7005545286506469,
+              "recall": 0.22202694786174576,
+              "f1": 0.33718861209964407,
+              "false_positive_rate": 0.040960809102402025
+            },
+            "red_highlights": {
+              "true_positives": 154,
+              "false_positives": 29,
+              "false_negatives": 1553,
+              "true_negatives": 3926,
+              "precision": 0.8415300546448088,
+              "recall": 0.09021675454012888,
+              "f1": 0.16296296296296298,
+              "false_positive_rate": 0.0073324905183312266
+            },
+            "latency_p50_ms": 38.60091604292393,
+            "latency_p95_ms": 53.19695919752121
+          },
+          "Hindi": {
+            "completed_recordings": 600,
+            "failed_recordings": 0,
+            "words": 5665,
+            "expert_problem_words": 2311,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 268,
+              "false_positives": 140,
+              "false_negatives": 2043,
+              "true_negatives": 3214,
+              "precision": 0.6568627450980392,
+              "recall": 0.11596711380354825,
+              "f1": 0.19713129827142334,
+              "false_positive_rate": 0.04174120453190221
+            },
+            "red_highlights": {
+              "true_positives": 99,
+              "false_positives": 38,
+              "false_negatives": 2212,
+              "true_negatives": 3316,
+              "precision": 0.7226277372262774,
+              "recall": 0.04283859800951969,
+              "f1": 0.08088235294117647,
+              "false_positive_rate": 0.011329755515802028
+            },
+            "latency_p50_ms": 35.43883375823498,
+            "latency_p95_ms": 47.27100022137165
+          },
+          "Korean": {
+            "completed_recordings": 600,
+            "failed_recordings": 0,
+            "words": 5620,
+            "expert_problem_words": 1680,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 270,
+              "false_positives": 155,
+              "false_negatives": 1410,
+              "true_negatives": 3785,
+              "precision": 0.6352941176470588,
+              "recall": 0.16071428571428573,
+              "f1": 0.25653206650831356,
+              "false_positive_rate": 0.03934010152284264
+            },
+            "red_highlights": {
+              "true_positives": 108,
+              "false_positives": 41,
+              "false_negatives": 1572,
+              "true_negatives": 3899,
+              "precision": 0.7248322147651006,
+              "recall": 0.06428571428571428,
+              "f1": 0.11809732094040458,
+              "false_positive_rate": 0.010406091370558375
+            },
+            "latency_p50_ms": 37.24404098466039,
+            "latency_p95_ms": 53.449375089257956
+          },
+          "Mandarin": {
+            "completed_recordings": 600,
+            "failed_recordings": 0,
+            "words": 5649,
+            "expert_problem_words": 2514,
+            "excluded_unmapped_problem_words": 2,
+            "all_highlights": {
+              "true_positives": 578,
+              "false_positives": 171,
+              "false_negatives": 1936,
+              "true_negatives": 2964,
+              "precision": 0.7716955941255007,
+              "recall": 0.22991249005568815,
+              "f1": 0.35427520686484837,
+              "false_positive_rate": 0.05454545454545454
+            },
+            "red_highlights": {
+              "true_positives": 245,
+              "false_positives": 45,
+              "false_negatives": 2269,
+              "true_negatives": 3090,
+              "precision": 0.8448275862068966,
+              "recall": 0.09745425616547335,
+              "f1": 0.1747503566333809,
+              "false_positive_rate": 0.014354066985645933
+            },
+            "latency_p50_ms": 39.03979202732444,
+            "latency_p95_ms": 57.852791622281075
+          },
+          "Spanish": {
+            "completed_recordings": 600,
+            "failed_recordings": 0,
+            "words": 5707,
+            "expert_problem_words": 2511,
+            "excluded_unmapped_problem_words": 0,
+            "all_highlights": {
+              "true_positives": 426,
+              "false_positives": 160,
+              "false_negatives": 2085,
+              "true_negatives": 3036,
+              "precision": 0.726962457337884,
+              "recall": 0.16965352449223417,
+              "f1": 0.2751049402647724,
+              "false_positive_rate": 0.05006257822277847
+            },
+            "red_highlights": {
+              "true_positives": 160,
+              "false_positives": 38,
+              "false_negatives": 2351,
+              "true_negatives": 3158,
+              "precision": 0.8080808080808081,
+              "recall": 0.06371963361210672,
+              "f1": 0.11812476928755998,
+              "false_positive_rate": 0.011889862327909888
+            },
+            "latency_p50_ms": 40.48854066058993,
+            "latency_p95_ms": 59.266333002597094
+          },
+          "Vietnamese": {
+            "completed_recordings": 600,
+            "failed_recordings": 0,
+            "words": 5693,
+            "expert_problem_words": 3407,
+            "excluded_unmapped_problem_words": 2,
+            "all_highlights": {
+              "true_positives": 1133,
+              "false_positives": 120,
+              "false_negatives": 2274,
+              "true_negatives": 2166,
+              "precision": 0.9042298483639266,
+              "recall": 0.33255063105371296,
+              "f1": 0.48626609442060087,
+              "false_positive_rate": 0.05249343832020997
+            },
+            "red_highlights": {
+              "true_positives": 612,
+              "false_positives": 33,
+              "false_negatives": 2795,
+              "true_negatives": 2253,
+              "precision": 0.9488372093023256,
+              "recall": 0.17963017317287935,
+              "f1": 0.30207305034550835,
+              "false_positive_rate": 0.014435695538057743
+            },
+            "latency_p50_ms": 39.721792098134756,
+            "latency_p95_ms": 55.38462474942207
+          }
+        },
+        "gender": {
+          "f": {
+            "completed_recordings": 1800,
+            "failed_recordings": 0,
+            "words": 17003,
+            "expert_problem_words": 6779,
+            "excluded_unmapped_problem_words": 2,
+            "all_highlights": {
+              "true_positives": 1342,
+              "false_positives": 441,
+              "false_negatives": 5437,
+              "true_negatives": 9783,
+              "precision": 0.7526640493550196,
+              "recall": 0.19796430151939814,
+              "f1": 0.31347815930857276,
+              "false_positive_rate": 0.043133802816901406
+            },
+            "red_highlights": {
+              "true_positives": 560,
+              "false_positives": 100,
+              "false_negatives": 6219,
+              "true_negatives": 10124,
+              "precision": 0.8484848484848485,
+              "recall": 0.08260805428529282,
+              "f1": 0.15055787068154322,
+              "false_positive_rate": 0.009780907668231613
+            },
+            "latency_p50_ms": 37.689624819904566,
+            "latency_p95_ms": 54.14520809426904
+          },
+          "m": {
+            "completed_recordings": 1799,
+            "failed_recordings": 0,
+            "words": 16993,
+            "expert_problem_words": 7351,
+            "excluded_unmapped_problem_words": 3,
+            "all_highlights": {
+              "true_positives": 1712,
+              "false_positives": 467,
+              "false_negatives": 5639,
+              "true_negatives": 9175,
+              "precision": 0.7856815052776503,
+              "recall": 0.23289348387974426,
+              "f1": 0.359286463798531,
+              "false_positive_rate": 0.04843393486828459
+            },
+            "red_highlights": {
+              "true_positives": 818,
+              "false_positives": 124,
+              "false_negatives": 6533,
+              "true_negatives": 9518,
+              "precision": 0.8683651804670913,
+              "recall": 0.11127737722758808,
+              "f1": 0.19727481008079104,
+              "false_positive_rate": 0.012860402406139806
+            },
+            "latency_p50_ms": 38.91787538304925,
+            "latency_p95_ms": 55.66995870321989
+          }
+        }
+      },
+      "partitions": {
+        "train": {
+          "completed_recordings": 1799,
+          "failed_recordings": 0,
+          "words": 16991,
+          "expert_problem_words": 6926,
+          "excluded_unmapped_problem_words": 3,
+          "all_highlights": {
+            "true_positives": 1483,
+            "false_positives": 486,
+            "false_negatives": 5443,
+            "true_negatives": 9579,
+            "precision": 0.7531742001015744,
+            "recall": 0.21412070459139473,
+            "f1": 0.33344575604272064,
+            "false_positive_rate": 0.048286140089418776
+          },
+          "red_highlights": {
+            "true_positives": 629,
+            "false_positives": 116,
+            "false_negatives": 6297,
+            "true_negatives": 9949,
+            "precision": 0.8442953020134228,
+            "recall": 0.09081721051111753,
+            "f1": 0.1639942641115891,
+            "false_positive_rate": 0.011525086934923
+          },
+          "latency_p50_ms": 37.71345783025026,
+          "latency_p95_ms": 54.14520809426904
+        },
+        "development": {
+          "completed_recordings": 900,
+          "failed_recordings": 0,
+          "words": 8505,
+          "expert_problem_words": 3613,
+          "excluded_unmapped_problem_words": 1,
+          "all_highlights": {
+            "true_positives": 789,
+            "false_positives": 180,
+            "false_negatives": 2824,
+            "true_negatives": 4712,
+            "precision": 0.8142414860681114,
+            "recall": 0.21837807915859397,
+            "f1": 0.3443910955914448,
+            "false_positive_rate": 0.03679476696647588
+          },
+          "red_highlights": {
+            "true_positives": 387,
+            "false_positives": 38,
+            "false_negatives": 3226,
+            "true_negatives": 4854,
+            "precision": 0.9105882352941177,
+            "recall": 0.10711320232493772,
+            "f1": 0.19167904903417535,
+            "false_positive_rate": 0.00776778413736713
+          },
+          "latency_p50_ms": 37.95045940205455,
+          "latency_p95_ms": 56.26304168254137
+        },
+        "final-test": {
+          "completed_recordings": 900,
+          "failed_recordings": 0,
+          "words": 8500,
+          "expert_problem_words": 3591,
+          "excluded_unmapped_problem_words": 1,
+          "all_highlights": {
+            "true_positives": 782,
+            "false_positives": 242,
+            "false_negatives": 2809,
+            "true_negatives": 4667,
+            "precision": 0.763671875,
+            "recall": 0.2177666388192704,
+            "f1": 0.3388949079089924,
+            "false_positive_rate": 0.049297209207577915
+          },
+          "red_highlights": {
+            "true_positives": 362,
+            "false_positives": 70,
+            "false_negatives": 3229,
+            "true_negatives": 4839,
+            "precision": 0.8379629629629629,
+            "recall": 0.10080757449178501,
+            "f1": 0.1799652000994283,
+            "false_positive_rate": 0.014259523324506009
+          },
+          "latency_p50_ms": 39.7843336686492,
+          "latency_p95_ms": 56.7115000449121
+        }
+      }
+    },
+    "detail_report": "benchmark-data/pronunciada-l2arctic-v1.json"
+  }
+}

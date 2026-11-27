@@ -1,0 +1,94 @@
+{
+  "report_version": 1,
+  "id": "release-pronunciada-v1",
+  "decision": {
+    "status": "experimental",
+    "all_frozen_acceptance_gates_pass": true,
+    "release_ready": false,
+    "reason": "Accuracy, performance, and automated UI gates pass, but the release policy still needs the commit SHA of the current implementation snapshot."
+  },
+  "provenance": {
+    "base_commit": "7cde107c11659dece45886c95d0f2394906d7aa9",
+    "evaluated_worktree_had_uncommitted_release_changes": true,
+    "policy": {
+      "path": "benchmarks/policies/release-pronunciada-v1.json",
+      "status": "draft-awaiting-source-commit",
+      "source_commit": null,
+      "sha256": "fef33ea65704b6413b81510689e57f18b35c0d6bb6b1c99392f5a03fe3ebee6b"
+    },
+    "artifacts": {
+      "human_corpora": {
+        "path": "benchmarks/reports/pronunciada-corpora-v1.json",
+        "sha256": "57a4f6132f19bfd559bcfa0e21a8e69f85173423d2edd8d34eff9ef5d1ed93fa"
+      },
+      "performance": {
+        "path": "benchmarks/reports/performance-v1.json",
+        "sha256": "3826e49593780736511aebc6a1903391f0f599c26ae7cefef35ea21bc22f80a5"
+      }
+    }
+  },
+  "model": {
+    "package": "pronunciada==1.1.0",
+    "language": "en",
+    "acoustic_model": "zipa-small-crctc-500k",
+    "revision": "dfe87c97662606fa6db90ad06f627d4363314744",
+    "precision": "int8",
+    "strictness": 0.75,
+    "yellow_below": 0.8,
+    "red_below": 0.5
+  },
+  "human_corpora": {
+    "gate_result": "pass",
+    "completed_recordings": 4859,
+    "failed_recordings": 0,
+    "speechocean": {
+      "recordings": 1260,
+      "completion_rate": 1.0,
+      "all_highlight_precision": 0.24818181818181817,
+      "all_highlight_recall": 0.9024793388429752,
+      "red_precision": 0.4310171198388721,
+      "red_recall": 0.7074380165289256,
+      "latency_p95_ms": 60.19812496379018
+    },
+    "l2arctic_final_test": {
+      "recordings": 900,
+      "completion_rate": 1.0,
+      "all_highlight_precision": 0.763671875,
+      "all_highlight_recall": 0.2177666388192704,
+      "red_precision": 0.8379629629629629,
+      "red_recall": 0.10080757449178501,
+      "latency_p95_ms": 56.7115000449121,
+      "excluded_unmapped_problem_words": 1
+    },
+    "required_subgroups_reported": true
+  },
+  "performance": {
+    "gate_result": "pass",
+    "cold_model_load_ms": 448.0617502704263,
+    "first_inference_ms": 59.1219593770802,
+    "warm_inference_p50_ms": 16.498874174430966,
+    "warm_inference_p95_ms": 17.142499797046185,
+    "peak_memory_bytes": 545619968,
+    "completion_rate": 1.0,
+    "valid_0_25_second_audio": true,
+    "valid_15_second_audio": true,
+    "no_network_after_cache": true,
+    "reference_scope": "Human L2-ARCTIC audio scored against a fixed product prompt for systems performance only"
+  },
+  "release_checks": {
+    "ruff": "pass",
+    "format": "pass",
+    "pyright": "pass",
+    "tests": {
+      "passed": 43,
+      "skipped": 1
+    },
+    "cached_model_integration_test": "pass",
+    "ui_navigation_and_non_retention_tests": "pass"
+  },
+  "known_limitations": [
+    "SpeechOcean warnings have high recall but low precision, especially for child speakers.",
+    "L2-ARCTIC warnings have higher precision but detect fewer than one quarter of annotated final-test errors.",
+    "Highlighted words are model estimates, not proof of incorrect pronunciation."
+  ]
+}

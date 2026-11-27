@@ -115,7 +115,7 @@ def normalize_audio(samples: NDArray[np.generic], sample_rate: int) -> Normalize
         raise CoachError(ErrorCode.AUDIO_INVALID, "Audio contains NaN or infinite samples")
 
     clipped_ratio = float(np.mean(np.abs(float_samples) >= 0.999))
-    mono = np.mean(float_samples, axis=1, dtype=np.float32)
+    mono = np.asarray(np.mean(float_samples, axis=1, dtype=np.float32), dtype=np.float32)
     normalized = _resample(mono, sample_rate, MODEL_SAMPLE_RATE_HZ)
     normalized = np.ascontiguousarray(np.clip(normalized, -1.0, 1.0), dtype=np.float32)
 

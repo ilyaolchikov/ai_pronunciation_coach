@@ -9,12 +9,9 @@ __pycache__/
 build/
 dist/
 
-# Later-stage local artifacts
+# Local models, corpora, detailed benchmark data, and recordings
 .cache/
 benchmark-data/
 recordings/
-benchmarks/intentional-errors/audio/*
-!benchmarks/intentional-errors/audio/README.md
-benchmarks/reports/intentional-errors-v1.json
 speechocean762/
 l2arctic_release_v5.0/

@@ -1,9 +1,13 @@
 import inspect
 
-import pronunciation_coach.analysis as analysis
+import pronunciation_coach.runtime as runtime
+import pronunciation_coach.ui as ui
 
 
-def test_stage_zero_does_not_import_heavy_future_dependencies() -> None:
-    forbidden = {"torch", "transformers", "gradio", "phonemizer"}
-    source = inspect.getsource(analysis)
-    assert all(f"import {package}" not in source for package in forbidden)
+def test_ui_and_runtime_have_only_the_pronunciada_backend() -> None:
+    source = inspect.getsource(ui) + inspect.getsource(runtime)
+
+    assert "pronunciada" in source.casefold()
+    assert "wav2vec" not in source.casefold()
+    assert "transformers" not in source
+    assert "torch" not in source

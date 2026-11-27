@@ -1,0 +1,59 @@
+{
+  "id": "release-pronunciada-v1",
+  "version": 1,
+  "status": "draft-awaiting-source-commit",
+  "source_commit": null,
+  "runtime": {
+    "package": "pronunciada==1.1.0",
+    "language": "en",
+    "model": "zipa-small-crctc-500k",
+    "model_revision": "dfe87c97662606fa6db90ad06f627d4363314744",
+    "precision": "int8",
+    "source_model_sha256": "d0e28b68164e8b1fbd6105100c01798828aa0855000ce9bbbd1a2cec233adf13",
+    "cache_model_sha256": "36a7cdc229e08c57b6c568fc0a4b6dc697c01f435b09183699b9a1f5b19c034c",
+    "tokens_sha256": "f8e042a0c9130532b22d03ec7cae2f75a23fbec70c450c31a8efb51787b2b8fe"
+  },
+  "scoring": {
+    "strictness": 0.75,
+    "yellow_below": 0.8,
+    "red_below": 0.5
+  },
+  "dataset_manifests": {
+    "speechocean_final": {
+      "path": "benchmarks/manifests/final-test-v1.json",
+      "sha256": "245fe537979586d255618fbaa82fbf42f8649c3730c801b762af53795db3e0aa"
+    },
+    "l2arctic_speakers": {
+      "path": "benchmarks/manifests/l2arctic-speakers-v1.json",
+      "sha256": "1a0b79a71c3da3baddcbf9a25d98a3eb6e878c698fe95aeb8bcad3f51fda8ada"
+    }
+  },
+  "acceptance_gates": {
+    "human_corpora": {
+      "completion_rate_min": 1.0,
+      "speechocean_yellow_recall_min": 0.8,
+      "speechocean_red_precision_min": 0.4,
+      "speechocean_red_recall_min": 0.6,
+      "l2arctic_final_test_yellow_precision_min": 0.75,
+      "l2arctic_final_test_yellow_recall_min": 0.15,
+      "all_required_subgroups_reported": true
+    },
+    "automated_ui_checks": {
+      "previous_next_reset_recording_state": true,
+      "ui_audio_not_retained_by_application": true
+    },
+    "performance": {
+      "completion_rate_min": 1.0,
+      "warm_inference_p95_ms_max": 200,
+      "valid_audio_duration_seconds": {
+        "min": 0.25,
+        "max": 15.0
+      },
+      "no_network_after_cache": true,
+      "peak_memory_reported": true
+    }
+  },
+  "notes": [
+    "Any scoring, model, dataset-manifest, or acceptance-gate change requires a new policy version."
+  ]
+}

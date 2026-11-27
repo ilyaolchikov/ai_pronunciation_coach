@@ -9,27 +9,19 @@ description = "A local-first, evidence-based English pronunciation coach"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "numpy>=2.3.5,<3",
     "pydantic>=2.10,<3",
+    "pronunciada==1.1.0",
+    "scipy>=1.14,<2",
+    "soundfile>=0.13,<1",
 ]
 
 [project.scripts]
-pronunciation-coach = "pronunciation_coach.cli:main"
 pronunciation-coach-audio = "pronunciation_coach.audio_cli:main"
 pronunciation-coach-benchmark = "pronunciation_coach.benchmark_cli:main"
-pronunciation-coach-catalogue = "pronunciation_coach.catalogue_cli:main"
-pronunciation-coach-model = "pronunciation_coach.model_cli:main"
 pronunciation-coach-ui = "pronunciation_coach.ui:main"
 
 [project.optional-dependencies]
-stage1 = [
-    "huggingface-hub>=0.36,<2",
-    "numpy>=2,<3",
-    "phonemizer>=3.3,<4",
-    "scipy>=1.14,<2",
-    "soundfile>=0.13,<1",
-    "torch>=2.6,<3",
-    "transformers>=4.48,<6",
-]
 benchmark = [
     "datasets>=3.2,<5",
 ]
@@ -48,10 +40,21 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["src/pronunciation_coach"]
 
+[tool.hatch.build.targets.wheel.shared-data]
+"THIRD_PARTY_NOTICES.md" = "share/doc/pronunciation-coach/THIRD_PARTY_NOTICES.md"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/LICENSE",
+    "/README.md",
+    "/THIRD_PARTY_NOTICES.md",
+    "/pyproject.toml",
+]
+
 [tool.pytest.ini_options]
 addopts = "--strict-config --strict-markers"
 markers = [
-    "stage1: tests that require optional Stage 1 dependencies",
     "model: tests that require the pinned model cache",
 ]
 testpaths = ["tests"]
@@ -61,6 +64,8 @@ include = ["src", "tests"]
 pythonVersion = "3.11"
 typeCheckingMode = "strict"
 reportMissingTypeStubs = false
+venvPath = "."
+venv = ".venv"
 
 [tool.ruff]
 extend-exclude = [".cache", ".uv-cache"]

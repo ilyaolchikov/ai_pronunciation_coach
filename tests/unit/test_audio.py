@@ -9,8 +9,6 @@ import soundfile as sf
 from pronunciation_coach.audio import detect_speech_region, load_audio, normalize_audio
 from pronunciation_coach.errors import CoachError, ErrorCode
 
-pytestmark = pytest.mark.stage1
-
 
 def test_normalizes_stereo_and_resamples_to_16khz() -> None:
     sample_rate = 48_000

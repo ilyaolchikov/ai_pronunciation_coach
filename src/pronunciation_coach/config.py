@@ -1,22 +1,13 @@
-"""Pinned external artifacts and bounded Stage 1 defaults."""
+"""Application paths and bounded audio defaults."""
 
 from pathlib import Path
 
-MODEL_ID = "facebook/wav2vec2-lv-60-espeak-cv-ft"
-MODEL_REVISION = "ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4"
-XLSR_MODEL_ID = "facebook/wav2vec2-xlsr-53-espeak-cv-ft"
-XLSR_MODEL_REVISION = "2c733782da5604684829819a5eb744c193fe9398"
-MODEL_SNAPSHOTS = {
-    "lv60": (MODEL_ID, MODEL_REVISION),
-    "xlsr53": (XLSR_MODEL_ID, XLSR_MODEL_REVISION),
-}
 MODEL_SAMPLE_RATE_HZ = 16_000
-DEFAULT_MODEL_CACHE = Path(".cache/huggingface")
-DEFAULT_UI_RECORDING_DIR = Path("recordings/ui")
+DEFAULT_PRONUNCIADA_CACHE = Path(".cache/pronunciada")
+DEFAULT_DATASET_CACHE = Path(".cache/datasets")
 
 SPEECHOCEAN_DATASET_ID = "mispeech/speechocean762"
 SPEECHOCEAN_REVISION = "06385584fad212b26134c656fdd3ccf9f093f33e"
-DEFAULT_DATASET_CACHE = Path(".cache/datasets")
 
 MAX_AUDIO_BYTES = 10 * 1024 * 1024
 MIN_AUDIO_DURATION_SECONDS = 0.25

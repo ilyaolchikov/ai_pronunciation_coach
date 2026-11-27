@@ -1,7 +1,7 @@
-"""Versioned contracts shared across the deterministic analysis pipeline."""
+"""Validated contracts for the Pronunciada-backed application."""
 
 from enum import StrEnum
-from typing import Self
+from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -10,67 +10,24 @@ class ContractModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
-class Operation(StrEnum):
-    MATCH = "match"
-    SUBSTITUTION = "substitution"
-    DELETION = "deletion"
-    INSERTION = "insertion"
-
-
 class WordStatus(StrEnum):
-    MATCH = "match"
     NO_PROBLEM_DETECTED = "no_problem_detected"
-    REVIEW = "review"
     WARNING = "warning"
-    NOT_DETECTED = "not_detected"
-    UNASSESSABLE = "unassessable"
-
-
-class PromptWord(ContractModel):
-    text: str = Field(min_length=1)
-    phone_variants: tuple[tuple[str, ...], ...] = Field(min_length=1, max_length=4)
-
-    @model_validator(mode="after")
-    def validate_phone_variants(self) -> Self:
-        if any(not variant for variant in self.phone_variants):
-            raise ValueError("phone variants must not be empty")
-        if any(not phone.strip() for variant in self.phone_variants for phone in variant):
-            raise ValueError("phones must not be blank")
-        if len(set(self.phone_variants)) != len(self.phone_variants):
-            raise ValueError("phone variants must be unique")
-        return self
-
-
-class GenerationMetadata(ContractModel):
-    phonemizer: str
-    espeak_ng: str
+    REVIEW = "review"
 
 
 class Prompt(ContractModel):
     id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
     text: str = Field(min_length=1)
-    locale: str = Field(pattern=r"^[a-z]{2}-[a-z]{2}$")
-    words: tuple[PromptWord, ...] = Field(min_length=1, max_length=20)
+    locale: Literal["en-us"]
+    words: tuple[str, ...] = Field(min_length=1, max_length=60)
     catalogue_version: int = Field(ge=1)
-    generated_with: GenerationMetadata | None = None
 
     @model_validator(mode="after")
-    def bound_variant_combinations(self) -> Self:
-        combinations = 1
-        for word in self.words:
-            combinations *= len(word.phone_variants)
-        if combinations > 256:
-            raise ValueError("prompt has more than 256 pronunciation combinations")
+    def validate_words(self) -> Self:
+        if any(not word.strip() for word in self.words):
+            raise ValueError("prompt words must not be blank")
         return self
-
-
-class RecognitionResult(ContractModel):
-    phones: tuple[str, ...]
-    backend: str = Field(min_length=1)
-    revision: str = Field(min_length=1)
-    inference_ms: int = Field(ge=0)
-    device: str | None = None
-    diagnostics: tuple[str, ...] = ()
 
 
 class SpeechRegion(ContractModel):
@@ -94,87 +51,43 @@ class AudioMetadata(ContractModel):
     speech_region: SpeechRegion | None = None
 
 
-class PhoneEvidence(ContractModel):
-    expected: str | None
-    observed: str | None
-    operation: Operation
-    word_index: int | None = Field(default=None, ge=0)
-    phone_index: int | None = Field(default=None, ge=0)
-    boundary_ambiguous: bool = False
-    displayable: bool = False
-
-    @model_validator(mode="after")
-    def validate_operation_shape(self) -> Self:
-        if self.operation is Operation.MATCH:
-            if self.expected is None or self.expected != self.observed:
-                raise ValueError("a match requires equal expected and observed phones")
-        elif self.operation is Operation.SUBSTITUTION:
-            if self.expected is None or self.observed is None or self.expected == self.observed:
-                raise ValueError("a substitution requires two different phones")
-        elif self.operation is Operation.DELETION:
-            if self.expected is None or self.observed is not None:
-                raise ValueError("a deletion requires only an expected phone")
-        elif self.operation is Operation.INSERTION and (
-            self.expected is not None or self.observed is None
-        ):
-            raise ValueError("an insertion requires only an observed phone")
-        return self
-
-
-class AlignmentResult(ContractModel):
-    cost: int = Field(ge=0)
-    selected_variant_indices: tuple[int, ...]
-    expected_phones: tuple[str, ...]
-    evidence: tuple[PhoneEvidence, ...]
-
-
 class ModelMetadata(ContractModel):
-    backend: str
-    revision: str
+    backend: Literal["pronunciada"] = "pronunciada"
+    version: str
+    acoustic_model: str
+    precision: str
+    device: Literal["cpu"] = "cpu"
     inference_ms: int = Field(ge=0)
-    device: str | None = None
 
 
-class PolicyMetadata(ContractModel):
-    id: str
-    version: int = Field(ge=1)
-    word_probability_threshold: float = Field(gt=0.0, lt=1.0)
-    calibration_report_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
-    phone_policy_id: str | None = None
-    phone_policy_version: int | None = Field(default=None, ge=1)
-    phone_warning_probability_threshold: float | None = Field(default=None, gt=0.0, lt=1.0)
-    phone_calibration_report_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+class ScoringSettings(ContractModel):
+    policy: Literal["release-pronunciada-v1"] = "release-pronunciada-v1"
+    strictness: float = Field(ge=0.0)
+    review_below: float = Field(ge=0.0, le=1.0)
+    warning_below: float = Field(ge=0.0, le=1.0)
+
+
+class PhoneResult(ContractModel):
+    expected: str
+    heard: str | None = None
+    acceptance_probability: float = Field(ge=0.0, le=1.0)
 
 
 class WordResult(ContractModel):
     text: str
     status: WordStatus
-    evidence: tuple[PhoneEvidence, ...]
-    tips: tuple[str, ...] = ()
-    review_probability: float | None = Field(default=None, ge=0.0, le=1.0)
-    phone_error_probability: float | None = Field(default=None, ge=0.0, le=1.0)
+    acceptance_probability: float = Field(ge=0.0, le=1.0)
+    phones: tuple[PhoneResult, ...]
 
 
 class AnalysisResult(ContractModel):
-    schema_version: str = "1.3"
+    schema_version: Literal["2.0"] = "2.0"
     prompt_id: str
     prompt_catalogue_version: int = Field(ge=1)
     expected_text: str
-    selected_variant_indices: tuple[int, ...]
-    alignment_cost: int = Field(ge=0)
-    expected_phones: tuple[str, ...]
-    observed_phones: tuple[str, ...]
-    audio: AudioMetadata | None = None
+    audio: AudioMetadata
     model: ModelMetadata
-    policy: PolicyMetadata | None = None
+    scoring: ScoringSettings
     words: tuple[WordResult, ...]
     limitations: tuple[str, ...]
     warnings: tuple[str, ...] = ()
-
-
-class FeedbackTip(ContractModel):
-    id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-    expected: str
-    observed: str
-    message: str = Field(min_length=1)
-    examples: tuple[str, ...] = Field(min_length=1)

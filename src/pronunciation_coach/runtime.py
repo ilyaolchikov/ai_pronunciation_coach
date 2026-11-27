@@ -1,18 +1,26 @@
-"""Shared construction and process-local caching for the Stage 2 analyzer."""
+"""Process-local Pronunciada analyzer construction and caching."""
 
+import os
 from functools import lru_cache
 from pathlib import Path
 
-from pronunciation_coach.calibrated_analysis import CalibratedAnalyzer
-from pronunciation_coach.config import DEFAULT_MODEL_CACHE
-from pronunciation_coach.recognizers.wav2vec2_espeak import Wav2Vec2EspeakRecognizer
+from pronunciation_coach.config import DEFAULT_PRONUNCIADA_CACHE
+from pronunciation_coach.errors import CoachError, ErrorCode
+from pronunciation_coach.pronunciada_analysis import PronunciadaAnalyzer, verify_pronunciada_assets
 
 
-@lru_cache(maxsize=4)
+@lru_cache(maxsize=2)
 def get_analyzer(
-    cache_dir: Path = DEFAULT_MODEL_CACHE,
-    device: str = "auto",
-) -> CalibratedAnalyzer:
-    return CalibratedAnalyzer(
-        Wav2Vec2EspeakRecognizer(cache_dir=cache_dir, device=device, local_files_only=True)
-    )
+    cache_dir: Path = DEFAULT_PRONUNCIADA_CACHE,
+    precision: str = "int8",
+    threads: int = 4,
+) -> PronunciadaAnalyzer:
+    os.environ["PRONUNCIADA_CACHE"] = str(cache_dir.resolve())
+    analyzer = PronunciadaAnalyzer.create(precision=precision, threads=threads)
+    try:
+        verify_pronunciada_assets(cache_dir, precision)
+    except ValueError as error:
+        raise CoachError(
+            ErrorCode.MODEL_UNAVAILABLE, "Pronunciada model assets are missing or invalid"
+        ) from error
+    return analyzer

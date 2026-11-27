@@ -1,101 +1,41 @@
 # AI Pronunciation Coach
 
-A local-first English read-aloud coach. Stage 3 adds a local browser UI over the Stage 2
-engine: microphone/upload input, calibrated red/yellow/green word states, limitations, and
-expandable technical evidence. The deterministic Stage 0 kernel and all feasibility
-experiments remain available as reproducible foundations.
+A local English read-aloud coach powered exclusively by
+[Pronunciada](https://github.com/moglearn/pronunciada). The browser records or accepts a short
+sentence, scores it locally, and colors each word green, yellow, or red from Pronunciada's
+acceptance probability.
 
-Stage 0 provides the deterministic kernel. Stage 1 adds bounded audio processing, a
-pinned local Wav2Vec2 phone recognizer, eSpeak catalogue validation, and a frozen
-SpeechOcean762 feasibility benchmark.
-
-The Stage 1 decision is **stop before the learner-facing UI**: aggregate signal and local
-performance are promising, but the raw edit policy incorrectly flags 93.75% of highly
-rated benchmark recordings.
-
-The Stage 1B constrained-CTC experiment reduces that development false-review rate to 25%
-by using frame-level posterior margins, at the cost of detecting only 25.6% of marked
-problem words. It is a held-out-validation candidate, not learner-ready feedback.
-
-The frozen 1,240-recording held-out evaluation subsequently returned **stop**: correlation,
-recall, false-review, performance, and reliability gates passed, but severe-problem word
-precision was 26.2% against a precommitted 40% minimum.
-
-English-only competitors and canonical variants improved LV-60 to 34.2% held-out
-precision and 43.2% recall. An identical XLSR-53 A/B reached 24.5% precision and 71.9%
-recall. Neither raw-margin candidate advanced.
-
-Stage 1C calibrates word-error probabilities from the existing CTC evidence with
-speaker-disjoint five-fold development predictions. Its frozen `0.30` classifier passed
-the consumed held-out-validation split at 43.7% precision, 35.9% recall, and 11.5%
-high-rated false reviews. This unblocks bounded Stage 2 implementation; it does not make
-the system learner-ready. The 63-speaker final-test partition remains unused.
-
-An L2-ARCTIC phone calibration now supplements that classifier. On six untouched L2
-speakers it improved red-candidate precision and recall, but a SpeechOcean regression
-showed that it should not replace the general red policy. It is therefore deployed only
-as a yellow phone-sensitive warning at probability `0.42`.
+Pronunciada's code is Apache-2.0, while its bundled language data keeps the source licences
+documented upstream. Its downloaded ZIPA model is CC BY 4.0. Keep the attributions in
+`THIRD_PARTY_NOTICES.md` when distributing the application or model.
 
 ## Requirements
 
 - Python 3.11 or newer
 - [uv](https://docs.astral.sh/uv/)
 
-## Setup and checks
+## Run the UI
 
 ```bash
-uv sync --all-groups
-make check
-```
-
-Install the optional acoustic and benchmark stack with:
-
-```bash
-uv sync --all-groups --extra stage1 --extra benchmark
-uv run pronunciation-coach-model prefetch
-# Optional pinned A/B checkpoint (about 1.26 GB):
-uv run pronunciation-coach-model prefetch --model xlsr53
-uv run pronunciation-coach-catalogue validate
-```
-
-## Run the local browser UI
-
-Install the acoustic engine and UI, then prefetch the pinned model once while online:
-
-```bash
-uv sync --all-groups --extra stage1 --extra ui
-uv run pronunciation-coach-model prefetch
+uv sync --all-groups --extra ui
 uv run pronunciation-coach-ui
 ```
 
-Open `http://127.0.0.1:7860`, use Previous/Next to choose among 15 sentences, and record
-or upload 0.25–15 seconds of audio. Navigating clears the previous recording and results.
-The app binds only to localhost and Gradio public sharing is disabled. Browser
-audio is saved as a WAV under the Git-ignored `recordings/ui/` directory before analysis.
-Uploads are saved there too because the NumPy input does not distinguish their source.
-The first analysis can be slower while the cached model loads.
+Open `http://127.0.0.1:7860`. The first analysis downloads Pronunciada's approximately 71 MB
+English int8 model; later analyses run locally. The application does not retain a copy of
+recordings or uploads after processing. Gradio may use its managed temporary upload area while
+receiving and decoding browser audio; no recording is written to the project.
 
-## Try the deterministic CLI
+The current policy uses Pronunciada strictness `0.75`:
 
-Exact sequence:
+- red: acceptance probability below `0.5`;
+- yellow: acceptance probability from `0.5` to below `0.8`;
+- green: acceptance probability `0.8` or higher.
 
-```bash
-uv run pronunciation-coach analyze \
-  --prompt thought-about-it \
-  --fake-observed "aɪ θ ɔː t ɐ b aʊ t ɪ t"
-```
+The technical panel contains only model timing, Pronunciada model and scoring settings, word
+acceptance probabilities, and per-phone expected/heard probabilities.
 
-Simulated `/θ/` → `/s/` substitution:
-
-```bash
-uv run pronunciation-coach analyze \
-  --prompt thought-about-it \
-  --fake-observed "aɪ s ɔː t ɐ b aʊ t ɪ t"
-```
-
-The command emits the versioned JSON result contract.
-
-Analyze a supported prompt from a local WAV/FLAC/AIFF recording after prefetching:
+## Analyze one file
 
 ```bash
 uv run pronunciation-coach-audio \
@@ -103,51 +43,26 @@ uv run pronunciation-coach-audio \
   --audio recording.wav
 ```
 
-The result marks words as `review`, `warning`, or `no_problem_detected`. A review or warning
-is calibrated evidence, not proof of an error; no problem detected does not mean perfect
-pronunciation.
-The JSON includes speech timing, model revision, policy version, calibration provenance,
-and limitations.
+## Pronunciada benchmarks
 
-Inspect raw experimental constrained-CTC phone margins with:
-
-```bash
-uv run pronunciation-coach-audio \
-  --prompt thought-about-it \
-  --audio recording.wav \
-  --posterior
-```
-
-Reproduce the frozen Stage 1B development experiment after caching the model and dataset:
+The maintainer release suite contains human-corpus accuracy and performance checks. UI navigation
+and audio non-retention are covered by the automated test suite. SpeechOcean requires the optional
+`benchmark` dependency. L2-ARCTIC v5.0 must be
+available locally at `l2arctic_release_v5.0/`; neither corpus is redistributed by this project.
 
 ```bash
-HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark run-ctc \
-  --device cpu \
-  --output /tmp/stage1b-ctc-development.json
+uv sync --all-groups --extra benchmark
+uv run pronunciation-coach-benchmark evaluate-corpora
+uv run pronunciation-coach-benchmark evaluate-performance \
+  --audio /path/to/reference-recording.wav \
+  --prompt <matching-prompt-id>
 ```
 
-The held-out runner is intentionally separate: it reads the frozen `-8.0` policy, performs
-no threshold selection, and refuses the locked final-test partition.
+The performance command accepts any local recording that matches its prompt. Use `--overwrite`
+to replace an existing report. Release benchmarks always use the frozen int8 model configuration.
+
+## Checks
 
 ```bash
-HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark prepare-heldout-manifests
-HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark run-ctc-heldout --device cpu
+make check
 ```
-
-Reproduce the Stage 1C development calibration and its fixed held-out evaluation:
-
-```bash
-HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark calibrate-word-errors
-HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark run-calibrated-heldout --device cpu
-```
-
-Run the small development-only intentional substitution benchmark after recording its six
-local audio files:
-
-```bash
-HF_HUB_OFFLINE=1 uv run pronunciation-coach-benchmark run-intentional-errors \
-  --device cpu
-```
-
-It reports target-word localization, exact localization, wrong-word-only warnings, and
-correct-control false warnings.

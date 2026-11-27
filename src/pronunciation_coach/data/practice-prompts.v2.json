@@ -1,0 +1,148 @@
+[
+  {
+    "id": "the-quick-brown-fox",
+    "text": "The quick brown fox jumps over the lazy dog.",
+    "locale": "en-us",
+    "words": [
+      "The",
+      "quick",
+      "brown",
+      "fox",
+      "jumps",
+      "over",
+      "the",
+      "lazy",
+      "dog"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "quiet-walk-in-the-park",
+    "text": "We enjoyed a quiet walk in the park.",
+    "locale": "en-us",
+    "words": [
+      "We",
+      "enjoyed",
+      "a",
+      "quiet",
+      "walk",
+      "in",
+      "the",
+      "park"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "new-yellow-jacket",
+    "text": "My sister bought a new yellow jacket.",
+    "locale": "en-us",
+    "words": [
+      "My",
+      "sister",
+      "bought",
+      "a",
+      "new",
+      "yellow",
+      "jacket"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "birds-near-the-river",
+    "text": "George watched the birds near the river.",
+    "locale": "en-us",
+    "words": [
+      "George",
+      "watched",
+      "the",
+      "birds",
+      "near",
+      "the",
+      "river"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "bring-three-clean-glasses",
+    "text": "Please bring three clean glasses.",
+    "locale": "en-us",
+    "words": [
+      "Please",
+      "bring",
+      "three",
+      "clean",
+      "glasses"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "measure-the-blue-boxes",
+    "text": "They usually measure the blue boxes.",
+    "locale": "en-us",
+    "words": [
+      "They",
+      "usually",
+      "measure",
+      "the",
+      "blue",
+      "boxes"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "child-found-five-coins",
+    "text": "A small child found five coins.",
+    "locale": "en-us",
+    "words": [
+      "A",
+      "small",
+      "child",
+      "found",
+      "five",
+      "coins"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "open-the-window-gently",
+    "text": "Could you open the window gently?",
+    "locale": "en-us",
+    "words": [
+      "Could",
+      "you",
+      "open",
+      "the",
+      "window",
+      "gently"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "train-came-early",
+    "text": "The train came early this morning.",
+    "locale": "en-us",
+    "words": [
+      "The",
+      "train",
+      "came",
+      "early",
+      "this",
+      "morning"
+    ],
+    "catalogue_version": 2
+  },
+  {
+    "id": "short-letter-yesterday",
+    "text": "Laura wrote a short letter yesterday.",
+    "locale": "en-us",
+    "words": [
+      "Laura",
+      "wrote",
+      "a",
+      "short",
+      "letter",
+      "yesterday"
+    ],
+    "catalogue_version": 2
+  }
+]
